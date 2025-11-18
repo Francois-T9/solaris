@@ -7,7 +7,7 @@ function Hero() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="hero w-full h-96 md:h-[500px] rounded-box"
+      className="hero w-screen h-96 md:h-[500px] rounded-box"
       style={{
         backgroundImage: `url(${background})`,
       }}

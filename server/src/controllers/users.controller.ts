@@ -23,18 +23,23 @@ const getAllUserRequests = async (req, res) => {
 };
 
 const createUserBill = async (req, res) => {
-  const { email, billURL } = req.body;
+  const { email } = req.body;
+  const file = req.file;
   try {
+    const fileUrl = `${req.protocol}://${req.get("host")}/uploads/${
+      file.originalname
+    }`;
+    console.log(fileUrl);
     const newUser = await prisma.userBill.upsert({
       where: {
         email,
       },
       update: {
-        billURL,
+        billURL: fileUrl,
       },
       create: {
         email,
-        billURL,
+        billURL: fileUrl,
       },
     });
 

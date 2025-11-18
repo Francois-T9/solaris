@@ -7,10 +7,10 @@ function Stats() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="stats shadow w-full"
+      className="stats shadow  flex flex-col md:flex-row "
     >
       {/* Energía Solar */}
-      <div className="stat">
+      <div className="stat transition-transform hover:scale-105 duration-300">
         <div className="stat-figure text-yellow-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ function Stats() {
       </div>
 
       {/* Energía Eólica */}
-      <div className="stat">
+      <div className="stat transition-transform hover:scale-105 duration-300">
         <div className="stat-figure text-blue-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ function Stats() {
       </div>
 
       {/* Energía Renovable General */}
-      <div className="stat">
+      <div className="stat transition-transform hover:scale-105 duration-300">
         <div className="stat-figure text-green-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"

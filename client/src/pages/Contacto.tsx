@@ -1,21 +1,69 @@
-import React from "react";
-
+import { useState } from "react";
+import type { ContactData } from "../types/types";
+import { useUserStore } from "../store/user.store";
 function Contacto() {
+  const { sendContact, contactRequestError, contactRequestSuccess } =
+    useUserStore();
+  const [data, setData] = useState<ContactData>({
+    name: "",
+    surname: "",
+    email: "",
+    requestType: "",
+    question: "",
+  });
+
+  const handleChange = (e: { target: { name: string; value: string } }) => {
+    const { name, value } = e.target;
+    setData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+  const handleSignup = () => {
+    sendContact(data);
+  };
   return (
     <div>
       <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
         <legend className="fieldset-legend">Formulario de contacto</legend>
 
         <label className="label">Nombre</label>
-        <input type="text" className="input" placeholder="Nombre" />
+        <input
+          name="name"
+          value={data.name}
+          type="text"
+          className="input"
+          placeholder="Nombre"
+          onChange={handleChange}
+        />
 
         <label className="label">Apellido</label>
-        <input type="text" className="input" placeholder="Apellido" />
+        <input
+          name="surname"
+          value={data.surname}
+          type="text"
+          className="input"
+          placeholder="Apellido"
+          onChange={handleChange}
+        />
         <label className="label">Email</label>
-        <input type="email" className="input" placeholder="Email" />
+        <input
+          name="email"
+          value={data.email}
+          type="email"
+          className="input"
+          placeholder="Email"
+          onChange={handleChange}
+        />
 
         <label className="label">Tipo de solicitud</label>
-        <select defaultValue="Pick a browser" className="select">
+        <select
+          name="requestType"
+          value={data.requestType}
+          defaultValue="Pick a browser"
+          className="select"
+          onChange={handleChange}
+        >
           <option disabled={true}>Elige una opcion</option>
           <option>Seguimiento</option>
           <option>Envio</option>
@@ -24,11 +72,21 @@ function Contacto() {
 
         <label className="label">Tu pregunta</label>
         <textarea
+          name="question"
+          value={data.question}
           className="textarea"
           placeholder="Indiquenos su pregunta"
+          onChange={handleChange}
         ></textarea>
+        {contactRequestError.length > 0 ? (
+          <p className="text-red-500">{contactRequestError}</p>
+        ) : (
+          <p className="text-green-500">{contactRequestSuccess}</p>
+        )}
 
-        <button className="btn btn-neutral mt-4">Enviar</button>
+        <button onClick={handleSignup} className="btn btn-neutral mt-4">
+          Enviar
+        </button>
       </fieldset>
     </div>
   );

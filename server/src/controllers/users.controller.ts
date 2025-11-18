@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { validationResult } from "express-validator";
 const prisma = new PrismaClient();
 
 const getAllBills = async (req, res) => {
@@ -44,21 +45,26 @@ const createUserBill = async (req, res) => {
 };
 
 const createUserRequest = async (req, res) => {
-  const { name, surname, email, requestType, question } = req.body;
+  const { data } = req.body;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ error: errors.array()[0].msg });
+  }
+
   try {
     const newUserRequest = await prisma.userContact.upsert({
       where: {
-        email,
+        email: data.email,
       },
       update: {
-        question,
+        question: data.question,
       },
       create: {
-        name,
-        surname,
-        email,
-        requestType,
-        question,
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+        requestType: data.requestType,
+        question: data.question,
       },
     });
 

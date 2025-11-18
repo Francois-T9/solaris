@@ -3,11 +3,15 @@ import Footer from "./Footer";
 import { Outlet } from "react-router";
 function Layout() {
   return (
-    <div className="min-h-screen min-w-screen  flex flex-col grow">
+    <div className="min-h-screen flex flex-col  ">
       <Header />
-      <div className="p-4 flex items-center justify-center grow ">
+      <div
+        className="flex grow p-4 w-full justify-center
+               "
+      >
         <Outlet />
       </div>
+
       <Footer />
     </div>
   );

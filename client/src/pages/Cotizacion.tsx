@@ -1,10 +1,10 @@
 import Steps from "../components/ui/steps";
 function Cotizacion() {
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center gap-4 ">
       <Steps />
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-        <legend className="fieldset-legend">Formulario de cotizacion</legend>
+      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4  ">
+        <legend className="fieldset-legend">Formulario de cotización</legend>
 
         <label className="label">Email</label>
         <input type="email" className="input" placeholder="Email" />

@@ -1,10 +1,17 @@
+import { motion } from "motion/react";
 import React from "react";
 
 function Stats() {
   return (
-    <div className="stats shadow">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="stats shadow w-full"
+    >
+      {/* Energía Solar */}
       <div className="stat">
-        <div className="stat-figure text-primary">
+        <div className="stat-figure text-yellow-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -15,17 +22,20 @@ function Stats() {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              d="M12 2v2m6.364 2.636l-1.414 1.414M20 12h-2M16.364 16.364l-1.414-1.414M12 20v-2M7.05 16.364l1.414-1.414M4 12h2M7.05 7.636l1.414 1.414M12 6a6 6 0 100 12 6 6 0 000-12z"
             ></path>
           </svg>
         </div>
-        <div className="stat-title">Total Likes</div>
-        <div className="stat-value text-primary">25.6K</div>
-        <div className="stat-desc">21% more than last month</div>
+        <div className="stat-title">Energía Solar</div>
+        <div className="stat-value text-yellow-500">100%</div>
+        <div className="stat-desc">
+          Fuente limpia e inagotable de electricidad
+        </div>
       </div>
 
+      {/* Energía Eólica */}
       <div className="stat">
-        <div className="stat-figure text-secondary">
+        <div className="stat-figure text-blue-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -36,28 +46,41 @@ function Stats() {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="2"
-              d="M13 10V3L4 14h7v7l9-11h-7z"
+              d="M4 12h16M12 4v16M4 4l16 16"
             ></path>
           </svg>
         </div>
-        <div className="stat-title">Page Views</div>
-        <div className="stat-value text-secondary">2.6M</div>
-        <div className="stat-desc">21% more than last month</div>
+        <div className="stat-title">Energía Eólica</div>
+        <div className="stat-value text-blue-500">0 Emisiones</div>
+        <div className="stat-desc">
+          Genera electricidad sin contaminar el aire
+        </div>
       </div>
 
+      {/* Energía Renovable General */}
       <div className="stat">
-        <div className="stat-figure text-secondary">
-          <div className="avatar avatar-online">
-            <div className="w-16 rounded-full">
-              <img src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp" />
-            </div>
-          </div>
+        <div className="stat-figure text-green-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="inline-block h-8 w-8 stroke-current"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
         </div>
-        <div className="stat-value">86%</div>
-        <div className="stat-title">Tasks done</div>
-        <div className="stat-desc text-secondary">31 tasks remaining</div>
+        <div className="stat-title">Beneficios Generales</div>
+        <div className="stat-value text-green-500">Sostenible</div>
+        <div className="stat-desc">
+          Reduce la dependencia de combustibles fósiles
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

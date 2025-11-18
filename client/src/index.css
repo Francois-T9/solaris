@@ -1,2 +1,21 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+.animate-scale {
+  animation: scale 1s ease-in-out;
+}
+html {
+  overflow-y: scroll;
+
+  scrollbar-gutter: stable;
+}

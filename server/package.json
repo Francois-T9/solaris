@@ -12,6 +12,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.20.0",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.934.0",
     "@prisma/client": "^6.19.0",
     "body-parser": "^2.2.0",
     "corps": "^0.1.0",
@@ -20,6 +21,8 @@
     "express": "^5.1.0",
     "express-validator": "^7.3.0",
     "multer": "^2.0.2",
+    "multer-s3": "^3.0.1",
+    "nodemailer": "^7.0.10",
     "prisma": "^6.19.0",
     "tsc": "^2.0.4",
     "tsx": "^4.20.6",

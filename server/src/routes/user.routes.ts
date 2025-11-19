@@ -1,22 +1,24 @@
 import express from "express";
 import usersController from "../controllers/users.controller";
-import validateUser from "../middlewares/validation.middleware";
+import validators from "../middlewares/validation.middleware";
 import multer from "multer";
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    return cb(null, "./uploads");
-  },
-  filename: function (req, file, cb) {
-    return cb(null, file.originalname);
-  },
-});
+import multerS3 from "multer-s3";
 
-const upload = multer({ storage });
+const upload = multer({ storage: multer.memoryStorage() });
 const router = express.Router();
 
 router.get("/bills", usersController.getAllBills);
 router.get("/questions", usersController.getAllUserRequests);
-router.post("/bills", upload.single("file"), usersController.createUserBill);
-router.post("/questions", validateUser, usersController.createUserRequest);
+router.post(
+  "/bills",
+  upload.single("file"),
+  validators.validateBill,
+  usersController.createUserBill
+);
+router.post(
+  "/questions",
+  validators.validateUser,
+  usersController.createUserRequest
+);
 
 export default router;

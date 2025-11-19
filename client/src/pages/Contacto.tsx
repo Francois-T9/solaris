@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ContactData } from "../types/types";
 import { useUserStore } from "../store/user.store";
 function Contacto() {
-  const { sendContact, contactRequestError, contactRequestSuccess } =
-    useUserStore();
+  const {
+    sendContact,
+    contactRequestError,
+    contactRequestSuccess,
+    resetContactState,
+  } = useUserStore();
+  useEffect(() => {
+    resetContactState();
+  }, [resetContactState]);
   const [data, setData] = useState<ContactData>({
     name: "",
     surname: "",

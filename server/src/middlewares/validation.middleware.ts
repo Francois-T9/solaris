@@ -31,4 +31,13 @@ const validateUser = [
     .isLength({ min: 10 })
     .withMessage("Su mensaje debe tener al menos 10 caracteres"),
 ];
-export default validateUser;
+const validateBill = [
+  body("email")
+    .notEmpty()
+    .withMessage("El correo electrónico es obligatorio")
+    .isEmail()
+    .withMessage("El correo electrónico debe ser válido")
+
+    .normalizeEmail(),
+];
+export default { validateUser, validateBill };

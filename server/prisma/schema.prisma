@@ -16,6 +16,8 @@ model UserBill {
  
   email String @unique
   billURL String?
+  createdAt DateTime @default(now())
+  reference String?
   
 }
 
@@ -28,5 +30,6 @@ model UserContact {
   email String @unique
   requestType String
   question String
+  reference String?
 
 }

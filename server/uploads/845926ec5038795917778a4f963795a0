@@ -1,0 +1,107 @@
+Fullstack
+	-initialize node : npm init --y
+	-initialize Vite project with : npm create vite@latest for client and server
+	-utiliser pnpm et supprimer nodemodules et package.lock.json
+	-utiliser nx monorepo
+
+Frontend
+	-definer timer temps reel, setInterval et clear interval dans useEffect
+	-definir le type du store (variables et fonctions)
+	-add ACCESS TOKEN (and not refresh) into store, not into localStorage
+	-async returns always a promise (=output type)
+	-use persist middleware of zustand to persist current data on refresh 
+		-give difrenet name to the second persist argument
+	-transform default date format to simple : {new Date(comment.createdAt).toLocaleString()}
+	-how to redirect user to /login when accessToken exprires and user is not allowed to access backed ?
+		-creeer <ProtectedRoute> qui decode le accessTokenn et compoare sa date dexpiration avec la date actuelle
+		-ajouter fonction verifie le token onClick
+		-creer fonction ensureAuth, qui verifie lexpiration du token, appelle cfette fonction on page render, dans App.tsx
+		-afficher dynamiquement pages en fonction du status auth :  set isAuth true on login, false on logout
+	-children props is of type React.ReactNode
+	-trouver nom a partir de user id, fonction find()
+	-passer un object en prop : destructurer les props en definissant le type
+	-comparer dates pour trier : convertie avec new Date(string).getTime()
+	-recuperer nom de fichier uploadé : onChange sur le input, et fonction qui prend target.files[0].name
+	-recuperer fichier depuis le backend : app.use("/uploads", express.static(path.join(process.cwd(), "uploads"))); 
+		et accéder aux fichiers de la façon suivante http://localhost:3000/uploads/myimage.jpg
+	-render seulement apres fetch => if(res.status==200) setLoading(false) etc
+	-footer always at bottom, even with page dynamic height : min-h-screen et flex-grow sur child
+	-add custom font : npm install @fontsource/### then @theme {
+  		--font-impact: "Anton", Impact, sans-serif;} in index.css and import @fontsource/## in main
+	-add custom color : define --color-colorName in @theme in index.css and use it as bg-colorName
+	-updating userData without replacing acccessToken, on set({currentUser :{ ...currentUser,userData: ...}})
+	-trier tableau dobjects : sort((a,b)=>b.prop-a.prop))
+	-tout fetch dans un useEffect dans App.tsx, pour eviter de re fetch a chaque page render
+	-header size changing on page switch => if one page has h> h-screen, then a vertical scrollbar appears and changes the padding, solution => add in index.css html {
+		  overflow-y: scroll;
+
+		  scrollbar-gutter: stable;
+		}
+	-animate elements : use motion.div from motion package
+
+Backend
+	-creer tsconfig avec tsc --init
+	-install globally tsx
+	-create local db on psql with CREATE DATABASE <name>
+	-add DB_URL on .env : "postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+	-npx prisma init
+	-prisma migrate : npx prisma migrate dev --name init
+	-import prisma client in controllers 
+	-cannot find prisma module => check schema prisma generator output
+	-npx prisma studio pour visualiser les données
+	-give types for all argument to avoid errors in prod 
+	-try catch structures in controllers
+	-req.body undefined => add body-parser to app.ts
+	-prisma.findUnique => define the field as unique in the schema
+	-query optional field with req.body => use findFirst
+	-define validation constraint, isLength for string and isInt for Int
+	-jwt auth : create access and refresh token on login, 
+		update db user refresh token
+	-pour utiliser req.params : passer mergeParams:true au router
+	-import et utiliser passportConfig dans app.ts
+	-dans /config/passport.ts, import Strategy as JwtStrategy
+	-appeler passport.authenticate dans les routes logout
+	-ne jamais envoyer refreshToken au frontend
+	-ajouter cors() a app.ts
+	-validate nested object : body(object.prop)
+	-check uniqueness of object fields : new Set()
+	-increment field : data {field : {increment : value }}
+	-find prisma vote without the main id => findFirst
+	-do operations directly in DB : for sum => model.aggregate
+	-fetch external API and populate local DB : await Promise.all() pour ajouter successivmenet 
+	-create and ignore is exists : upserts, make the where field unique
+	-id is not neccessarly a number, can be a product id  or reference (ex: constructorId) string
+	-run prisma seed : npx tsx /prisma/seed.ts
+	-if doings prisma operations in a .map(), put it in Promise.All() to wait for all async operations to complete
+	-when orderBy an array prisma model, make sure the fiels is a number and not a string
+	-new prisma update: prisma.config.ts file => import dotenv before loading db URL
+	-Module '"@prisma/client"' has no exported member 'PrismaClient' => npx prisma generate
+	
+
+
+Backend deploylment
+	-creer db cloud
+	-ajouter la nouvelle variable ENV de la db cloud sur REnder
+	-ne pas oublier TOUTES les variables .env (JWT etc)
+	-creer seed.ts pour populate la db
+	-creer tsconfig.json
+	-make sure all packages are installed as prod dependencies
+	-create scripts in package.jsons for build and start
+	-change from local db to cloud db and change URL in .env
+	-utiliser && entre multiples commandes dans le build sur Render
+	-dans la DB cloud de Render, il y a une commande psql pour voir la db
+	-en dev, donner un type a tout, sinon erreurs en mode strict en prod
+	
+
+Frontend deployment
+	-ajouter VITE_BACKEND_URL dans .env et changed tous les endpoint
+	-changer endpoint avec import.meta.env.VAR
+	-chercher erreur typo : grep -r "localhost" src
+
+Git
+	-fetch repo modif : git pull origin main
+	-initialize repo from local folder : git init
+
+
+Bash
+	-mettre  a jour app depuis terminal

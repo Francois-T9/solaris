@@ -3,6 +3,8 @@ import { create } from "zustand";
 export const useUserStore = create<UsersStore>()((set) => ({
   contactRequestError: "",
   contactRequestSuccess: "",
+  billingRequestError: "",
+  billingRequestSuccess: "",
   sendContact: async (data) => {
     const response = await fetch(`http://localhost:3000/api/questions`, {
       method: "POST",
@@ -12,14 +14,35 @@ export const useUserStore = create<UsersStore>()((set) => ({
 
     const jsonResponse = await response.json();
     if (response.status == 200) {
-      console.log(data);
       set({
         contactRequestError: "",
         contactRequestSuccess: "Su solicitud ha sido enviada",
       });
     } else {
-      console.log(jsonResponse.error);
       set({ contactRequestError: jsonResponse.error });
     }
   },
+  sendBill: async (data) => {
+    const response = await fetch(`http://localhost:3000/api/bills`, {
+      method: "POST",
+      body: data,
+    });
+    const JSONresponse = await response.json();
+    if (response.status == 200) {
+      set({ billingRequestSuccess: "Su requesta ha sido enviada" });
+      set({ billingRequestError: "" });
+    } else {
+      set({ billingRequestError: JSONresponse.error });
+    }
+  },
+  resetBillingState: () =>
+    set({
+      billingRequestSuccess: "",
+      billingRequestError: "",
+    }),
+  resetContactState: () =>
+    set({
+      contactRequestSuccess: "",
+      contactRequestError: "",
+    }),
 }));

@@ -1,7 +1,7 @@
 function FAQ() {
   return (
-    <div className="sm:min-w-2xl ">
-      <div className="collapse collapse-arrow bg-base-100 border border-base-300">
+    <div className="max-w-2xl mx-auto w-full ">
+      <div className="collapse collapse-arrow bg-base-100 border border-base-300 ">
         <input type="radio" name="my-accordion-2" defaultChecked />
         <div className="collapse-title font-semibold">
           How do I create an account?

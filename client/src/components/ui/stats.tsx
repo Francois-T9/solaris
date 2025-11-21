@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import React from "react";
 
 function Stats() {
   return (
@@ -7,7 +6,7 @@ function Stats() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="stats shadow  flex flex-col md:flex-row gap-4 "
+      className="stats shadow  flex flex-col lg:flex-row gap-4 "
     >
       {/* Energía Solar */}
       <div className="stat w-96 ">

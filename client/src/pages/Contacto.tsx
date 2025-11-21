@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ContactData } from "../types/types";
 import { useUserStore } from "../store/user.store";
+import ContactInformation from "../components/contact-information";
 function Contacto() {
   const {
     sendContact,
@@ -30,9 +31,11 @@ function Contacto() {
     sendContact(data);
   };
   return (
-    <div>
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-        <legend className="fieldset-legend">Formulario de contacto</legend>
+    <div className="flex flex-col md:flex-row gap-4 items-center ">
+      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 text-lg">
+        <legend className="fieldset-legend text-2xl">
+          Formulario de contacto
+        </legend>
 
         <label className="label">Nombre</label>
         <input
@@ -95,6 +98,7 @@ function Contacto() {
           Enviar
         </button>
       </fieldset>
+      <ContactInformation />
     </div>
   );
 }

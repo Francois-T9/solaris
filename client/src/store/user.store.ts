@@ -32,7 +32,11 @@ export const useUserStore = create<UsersStore>()((set) => ({
       set({ billingRequestSuccess: "Su requesta ha sido enviada" });
       set({ billingRequestError: "" });
     } else {
+      console.log(JSONresponse.error);
       set({ billingRequestError: JSONresponse.error });
+      if (JSONresponse.error.message) {
+        set({ billingRequestError: JSONresponse.error.message });
+      }
     }
   },
   resetBillingState: () =>

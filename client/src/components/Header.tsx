@@ -1,8 +1,9 @@
 import { Link } from "react-router";
+import logo from "../assets/logo_full.png";
 function Header() {
   return (
     <div className="navbar bg-base-100 shadow-sm z-50  w-full top-0 sticky sm:pl-16 sm:pr-16">
-      <div className="navbar-start">
+      <div className="navbar-start gap-4">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -23,7 +24,7 @@ function Header() {
           </div>
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-md sm:menu-lg dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
               <Link to="/about">¿Quiénes somos?</Link>
@@ -40,8 +41,12 @@ function Header() {
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl">
-          Solaris
+        <Link to="/" className="p-0 flex items-center ">
+          <img
+            src={logo}
+            className="h-14 w-auto object-contain sm:h-18"
+            alt="Company Logo"
+          />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

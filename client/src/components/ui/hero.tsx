@@ -15,14 +15,13 @@ function Hero() {
       <div className="hero-overlay"></div>
       <div className="hero-content text-neutral-content text-center">
         <div className="max-w-md">
-          <h1 className="mb-1 text-5xl font-bold">Solaris</h1>
-          <h2 className="mb-5 text-2xl ">Energy solutions</h2>
+          <h1 className="mb-1 text-6xl font-bold">Solaris</h1>
+          <h2 className="mb-5 text-4xl ">Energy solutions</h2>
+          <h3 className="mb-5 text-xl "> Nosotros los hacemos por ti.</h3>
           <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Ahorra energía,cuida el planeta y reduce tus costos.
           </p>
-          <Link to="/cotizacion" className="btn btn-warning">
+          <Link to="/cotizacion" className="btn btn-warning btn-lg">
             Obtén una cotización
           </Link>
         </div>

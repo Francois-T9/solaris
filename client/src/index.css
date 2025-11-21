@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@plugin "daisyui" {
+  themes: light --default;
+}
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+}
 @keyframes scale {
   0% {
     transform: scale(1);
@@ -9,6 +19,9 @@
   100% {
     transform: scale(1.2);
   }
+}
+:root {
+  color-scheme: light !important;
 }
 
 .animate-scale {

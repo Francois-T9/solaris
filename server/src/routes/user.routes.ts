@@ -10,15 +10,26 @@ const router = express.Router();
 router.get("/bills", usersController.getAllBills);
 router.get("/questions", usersController.getAllUserRequests);
 router.post(
-  "/bills",
+  "/bill",
   upload.single("file"),
   validators.validateBill,
   usersController.createUserBill
 );
 router.post(
-  "/questions",
+  "/request",
   validators.validateUser,
   usersController.createUserRequest
 );
+
+router.post(
+  "/car",
+  upload.none(),
+  validators.validateCarRequest,
+  usersController.createElectricCarRequest
+);
+
+router.get("/brands", usersController.getAllBrands);
+
+router.delete("/bills/:id", usersController.deleteBill);
 
 export default router;

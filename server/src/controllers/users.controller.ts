@@ -6,12 +6,15 @@ import {
   S3Client,
   PutObjectCommand,
   GetObjectCommand,
+  DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
 import nodemailer from "nodemailer";
 import crypto from "crypto";
+import transporter from "../config/nodemailer";
 const aws_acess_key = process.env.AWS_ACCESS_KEY_ID;
-const aws_secret_key = process.env.AWS_SECRET_ACCESS;
+const aws_secret_key = process.env.AWS_SECRET_ACCESS_KEY;
 const bucket_name = process.env.BUCKET_NAME;
 const bucket_region = process.env.BUCKET_REGION;
 const s3 = new S3Client({ region: bucket_region });
@@ -20,19 +23,29 @@ const prisma = new PrismaClient();
 
 const getAllBills = async (req, res) => {
   try {
-    const allBills = await prisma.userBill.findMany();
+    const allBills = await prisma.bill.findMany({
+      orderBy: { createdAt: "desc" },
+    });
 
     for (const bill of allBills) {
-      console.log(bill.billURL);
+      const getObjectParams = {
+        Bucket: bucket_name,
+        Key: bill.billName,
+      };
+
+      const command = new GetObjectCommand(getObjectParams);
+      const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+      bill.billUrl = url;
+
+      await prisma.bill.update({
+        where: {
+          id: bill.id,
+        },
+        data: {
+          billUrl: url,
+        },
+      });
     }
-
-    // const getObjectParams = {
-    //   BucketName: bucket_name,
-    //   Key: "",
-    // };
-
-    // const command = new GetObjectCommand(getObjectParams);
-    // const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
 
     res.status(200).json(allBills);
   } catch (err) {
@@ -40,9 +53,19 @@ const getAllBills = async (req, res) => {
   }
 };
 
+const getAllBrands = async (req, res) => {
+  try {
+    const allBrands = await prisma.manufacturer.findMany({});
+
+    res.status(200).json(allBrands);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
 const getAllUserRequests = async (req, res) => {
   try {
-    const allUsers = await prisma.userContact.findMany();
+    const allUsers = await prisma.request.findMany();
 
     res.status(200).json(allUsers);
   } catch (err) {
@@ -51,7 +74,8 @@ const getAllUserRequests = async (req, res) => {
 };
 
 const createUserBill = async (req, res) => {
-  const { email } = req.body;
+  const { name, surname } = req.body;
+  const email = req.body["email"];
   const file = req.file;
 
   const errors = validationResult(req);
@@ -79,6 +103,8 @@ const createUserBill = async (req, res) => {
 
   const fileName = randomFileName();
 
+  // upload to s3
+
   const params = {
     Bucket: bucket_name,
     Key: fileName,
@@ -86,57 +112,166 @@ const createUserBill = async (req, res) => {
     ContentType: req.file.mimetype,
   };
   const command = new PutObjectCommand(params);
+  await s3.send(command);
+
+  // download from s3
+  const getObjectParams = {
+    Bucket: bucket_name,
+    Key: fileName,
+  };
+
+  const getCommand = new GetObjectCommand(getObjectParams);
+  const url = await getSignedUrl(s3, getCommand, { expiresIn: 3600 });
 
   try {
-    const fileUrl = `${req.protocol}://${req.get("host")}/uploads/${
-      file.originalname
-    }`;
-    const newUser = await prisma.userBill.upsert({
+    const newUser = await prisma.user.upsert({
       where: {
         email,
       },
       update: {
-        billURL: fileName,
+        bill: {
+          upsert: {
+            update: {
+              billName: fileName,
+              billUrl: url,
+            },
+            create: {
+              billName: fileName,
+              billUrl: url,
+            },
+          },
+        },
       },
       create: {
+        name,
+        surname,
         email,
-        billURL: fileName,
+        bill: {
+          create: {
+            billName: fileName,
+            billUrl: url,
+          },
+        },
       },
     });
 
-    await s3.send(command);
+    // send email with pdf in attachment or url in text body
+
+    const mailOptions = {
+      from: "francois.thullier98@gmail.com",
+      to: email,
+      subject: "Has recibido una requesta de cotizacion",
+      text: `Hola, ${email} te ha mandado su recibo de luz para cotizar.`,
+      attachments: [
+        {
+          filename: `${fileName}.pdf`,
+          path: url,
+        },
+      ],
+    };
+
+    await transporter.sendMail(mailOptions);
+
     res.status(200).json(newUser);
   } catch (err) {
-    console.log(err);
     res.status(500).json({ error: err });
   }
 };
-
 const createUserRequest = async (req, res) => {
   const { data } = req.body;
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ error: errors.array()[0].msg });
   }
-
   try {
-    const newUserRequest = await prisma.userContact.upsert({
+    const request = await prisma.user.upsert({
       where: {
         email: data.email,
       },
       update: {
-        question: data.question,
+        request: {
+          upsert: {
+            update: {
+              requestType: data.requestType,
+              comment: data.comment,
+            },
+            create: {
+              requestType: data.requestType,
+              comment: data.comment,
+            },
+          },
+        },
       },
       create: {
         name: data.name,
         surname: data.surname,
         email: data.email,
-        requestType: data.requestType,
-        question: data.question,
+        request: {
+          create: {
+            requestType: data.requestType,
+            comment: data.comment,
+          },
+        },
       },
     });
 
-    res.status(200).json(newUserRequest);
+    res.status(200).json(request);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
+const deleteBill = async (req, res) => {
+  const id = Number(req.params.id);
+
+  try {
+    const bill = await prisma.bill.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!bill) {
+      res.status(404).json({ error: "Bill not found" });
+      return;
+    }
+    const params = {
+      Bucket: bucket_name,
+      Key: bill.billName,
+    };
+    const command = new DeleteObjectCommand(params);
+    await s3.send(command);
+
+    await prisma.bill.delete({ where: { id } });
+
+    res.status(200).json(bill);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
+const createElectricCarRequest = async (req, res) => {
+  const { name, surname, email, manufacturerName } = req.body;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ error: errors.array()[0].msg });
+  }
+  try {
+    const newEVRequest = await prisma.user.upsert({
+      where: {
+        email,
+      },
+      update: {
+        car: { connect: { name: manufacturerName } }, // connect to existing manufacturer
+      },
+      create: {
+        name,
+        surname,
+        email,
+        car: { connect: { name: manufacturerName } },
+      },
+    });
+    res.status(200).json(newEVRequest);
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -147,4 +282,7 @@ export default {
   getAllUserRequests,
   createUserBill,
   createUserRequest,
+  deleteBill,
+  getAllBrands,
+  createElectricCarRequest,
 };

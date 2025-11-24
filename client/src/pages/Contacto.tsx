@@ -17,7 +17,7 @@ function Contacto() {
     surname: "",
     email: "",
     requestType: "",
-    question: "",
+    comment: "",
   });
 
   const handleChange = (e: { target: { name: string; value: string } }) => {
@@ -31,74 +31,72 @@ function Contacto() {
     sendContact(data);
   };
   return (
-    <div className="flex flex-col md:flex-row gap-4 items-center ">
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 text-lg">
-        <legend className="fieldset-legend text-2xl">
-          Formulario de contacto
-        </legend>
-
-        <label className="label">Nombre</label>
-        <input
-          name="name"
-          value={data.name}
-          type="text"
-          className="input"
-          placeholder="Nombre"
-          onChange={handleChange}
-        />
-
-        <label className="label">Apellido</label>
-        <input
-          name="surname"
-          value={data.surname}
-          type="text"
-          className="input"
-          placeholder="Apellido"
-          onChange={handleChange}
-        />
-        <label className="label">Email</label>
-        <input
-          name="email"
-          value={data.email}
-          type="email"
-          className="input"
-          placeholder="Email"
-          onChange={handleChange}
-        />
-
-        <label className="label">Tipo de solicitud</label>
-        <select
-          name="requestType"
-          value={data.requestType}
-          defaultValue="Pick a browser"
-          className="select"
-          onChange={handleChange}
-        >
-          <option disabled={true}>Elige una opcion</option>
-          <option>Seguimiento</option>
-          <option>Envio</option>
-          <option>Mantenimiento</option>
-        </select>
-
-        <label className="label">Tu pregunta</label>
-        <textarea
-          name="question"
-          value={data.question}
-          className="textarea"
-          placeholder="Indiquenos su pregunta"
-          onChange={handleChange}
-        ></textarea>
-        {contactRequestError.length > 0 ? (
-          <p className="text-red-500">{contactRequestError}</p>
-        ) : (
-          <p className="text-green-500">{contactRequestSuccess}</p>
-        )}
-
-        <button onClick={handleSignup} className="btn btn-neutral mt-4">
-          Enviar
-        </button>
-      </fieldset>
-      <ContactInformation />
+    <div className="flex flex-col  gap-4 items-center ">
+      <h1 className="text-2xl font-bold underline">Contáctanos</h1>
+      <div className="flex flex-col lg:flex-row gap-4 items-center">
+        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 text-lg">
+          <legend className="fieldset-legend text-2xl">
+            Formulario de contacto
+          </legend>
+          <label className="label">Nombre</label>
+          <input
+            name="name"
+            value={data.name}
+            type="text"
+            className="input"
+            placeholder="Nombre"
+            onChange={handleChange}
+          />
+          <label className="label">Apellido</label>
+          <input
+            name="surname"
+            value={data.surname}
+            type="text"
+            className="input"
+            placeholder="Apellido"
+            onChange={handleChange}
+          />
+          <label className="label">Email</label>
+          <input
+            name="email"
+            value={data.email}
+            type="email"
+            className="input"
+            placeholder="Email"
+            onChange={handleChange}
+          />
+          <label className="label">Tipo de solicitud</label>
+          <select
+            name="requestType"
+            value={data.requestType}
+            defaultValue="Pick a browser"
+            className="select"
+            onChange={handleChange}
+          >
+            <option disabled={true}>Elige una opción</option>
+            <option>Información</option>
+            <option>Envío</option>
+            <option>Mantenimiento</option>
+          </select>
+          <label className="label">Tu pregunta</label>
+          <textarea
+            name="comment"
+            value={data.comment}
+            className="textarea"
+            placeholder="Indiquenos su pregunta"
+            onChange={handleChange}
+          ></textarea>
+          {contactRequestError.length > 0 ? (
+            <p className="text-red-500">{contactRequestError}</p>
+          ) : (
+            <p className="text-green-500">{contactRequestSuccess}</p>
+          )}
+          <button onClick={handleSignup} className="btn btn-neutral mt-4">
+            Enviar
+          </button>
+        </fieldset>
+        <ContactInformation />
+      </div>
     </div>
   );
 }

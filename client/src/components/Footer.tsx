@@ -1,8 +1,13 @@
-import React from "react";
+import logo from "../assets/logo_full.png";
 
 function Footer() {
   return (
     <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10  bottom-0">
+      <img
+        src={logo}
+        className="h-14 w-auto object-contain sm:h-18"
+        alt="Company Logo"
+      />
       <nav>
         <h6 className="footer-title">Servicios</h6>
         <a className="link link-hover">Optimizacion energetica</a>

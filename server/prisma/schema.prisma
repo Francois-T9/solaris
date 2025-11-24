@@ -1,5 +1,3 @@
-
-
 generator client {
   provider = "prisma-client-js"
   // output   = "../src/generated/prisma"
@@ -10,26 +8,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model UserBill {
-
-  id Int @id @default(autoincrement())
+model User {  
+   id        Int      @id @default(autoincrement())
  
-  email String @unique
-  billURL String?
-  createdAt DateTime @default(now())
-  reference String?
-  
+  name             String
+  surname          String
+  email            String      @unique
+  bill     Bill?    
+  request  Request? 
+  car       Manufacturer? @relation(fields: [manufacturerName], references: [name])
+  manufacturerName String?
 }
 
-model UserContact {
+model Bill {
+  id        Int      @id @default(autoincrement())
+  billName  String
+  billUrl   String
+  createdAt DateTime @default(now())
 
-  id Int @id @default(autoincrement())
  
-  name String
-  surname String
-  email String @unique
-  requestType String
-  question String
-  reference String?
+  user   User  @relation( fields: [userEmail], references: [email])
+  userEmail String   @unique
+}
 
+model Request {
+  id Int @id @default(autoincrement())
+
+  requestType String
+  comment     String
+   user   User @relation( fields: [userEmail], references: [email])
+  userEmail String @unique
+}
+
+model Manufacturer {
+  name String @id
+
+  users User[]
 }

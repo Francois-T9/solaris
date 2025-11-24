@@ -6,8 +6,14 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use(
+  express.urlencoded({
+    extended: true, // uses 'qs' instead of 'querystring'
+    parameterLimit: 10000,
+  })
+);
 app.use("/api", router);
+
 app.listen(3000, () => {
   console.log("app running on port 3000");
 });

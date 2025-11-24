@@ -5,6 +5,10 @@ import Cotizacion from "./pages/Cotizacion";
 import Contacto from "./pages/Contacto";
 import About from "./pages/About";
 import FAQ from "./pages/FAQ";
+import Admin from "./pages/Admin";
+import { useUserStore } from "./store/user.store";
+import { useEffect, useState } from "react";
+import Paquetes from "./pages/Paquetes";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,11 +34,40 @@ const router = createBrowserRouter([
         path: "/faq",
         element: <FAQ />,
       },
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
+      {
+        path: "/paquetes",
+        element: <Paquetes />,
+      },
     ],
   },
 ]);
 function App() {
-  return <RouterProvider router={router} />;
+  const { getBills, getCarBrands } = useUserStore();
+  const [isAppReady, setIsAppReady] = useState<boolean>(false);
+
+  useEffect(() => {
+    const init = async () => {
+      await Promise.all([getBills(), getCarBrands()]);
+
+      setIsAppReady(true);
+    };
+
+    init();
+  }, []);
+
+  if (isAppReady) {
+    return <RouterProvider router={router} />;
+  } else {
+    return (
+      <div className="min-w-screen min-h-screen flex items-center justify-center">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
 }
 
 export default App;

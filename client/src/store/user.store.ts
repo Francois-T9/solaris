@@ -1,12 +1,16 @@
 import type { UsersStore } from "../types/types";
 import { create } from "zustand";
-export const useUserStore = create<UsersStore>()((set) => ({
+export const useUserStore = create<UsersStore>()((set, get) => ({
   contactRequestError: "",
   contactRequestSuccess: "",
   billingRequestError: "",
   billingRequestSuccess: "",
+  carRequestError: "",
+  carRequestSuccess: "",
+  allBills: null,
+  allBrands: [],
   sendContact: async (data) => {
-    const response = await fetch(`http://localhost:3000/api/questions`, {
+    const response = await fetch(`http://localhost:3000/api/request`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data }),
@@ -22,8 +26,24 @@ export const useUserStore = create<UsersStore>()((set) => ({
       set({ contactRequestError: jsonResponse.error });
     }
   },
+  sendCar: async (data) => {
+    const response = await fetch(`http://localhost:3000/api/car`, {
+      method: "POST",
+      body: data,
+    });
+
+    const jsonResponse = await response.json();
+    if (response.status == 200) {
+      set({
+        carRequestError: "",
+        carRequestSuccess: "Su solicitud ha sido enviada",
+      });
+    } else {
+      set({ carRequestError: jsonResponse.error });
+    }
+  },
   sendBill: async (data) => {
-    const response = await fetch(`http://localhost:3000/api/bills`, {
+    const response = await fetch(`http://localhost:3000/api/bill`, {
       method: "POST",
       body: data,
     });
@@ -32,11 +52,42 @@ export const useUserStore = create<UsersStore>()((set) => ({
       set({ billingRequestSuccess: "Su requesta ha sido enviada" });
       set({ billingRequestError: "" });
     } else {
-      console.log(JSONresponse.error);
       set({ billingRequestError: JSONresponse.error });
       if (JSONresponse.error.message) {
         set({ billingRequestError: JSONresponse.error.message });
       }
+    }
+  },
+  getBills: async () => {
+    const response = await fetch(`http://localhost:3000/api/bills`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const JSONresponse = await response.json();
+    if (response.status == 200) {
+      set({ allBills: JSONresponse });
+      return true;
+    } else {
+      return false;
+    }
+  },
+  deleteBill: async (billId: number) => {
+    const { getBills } = get();
+    const response = await fetch(`http://localhost:3000/api/bills/${billId}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (response.status == 200) {
+      getBills();
+    }
+  },
+  getCarBrands: async () => {
+    const response = await fetch(`http://localhost:3000/api/brands`, {
+      method: "GET",
+    });
+    const data = await response.json();
+    if (response.status == 200) {
+      set({ allBrands: data });
     }
   },
   resetBillingState: () =>

@@ -24,6 +24,11 @@
   color-scheme: light !important;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 .animate-scale {
   animation: scale 1s ease-in-out;
 }

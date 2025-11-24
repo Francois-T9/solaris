@@ -8,35 +8,38 @@ function Servicios() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="flex flex-col lg:flex-row gap-4 "
+      className="flex flex-col lg:flex-row gap-4   "
     >
-      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300 ">
+      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300  border-8 border-amber-400 ">
         <div className="flex  justify-center">
           <img className="w-25" src={solarPanelImage} alt="Shoes" />
         </div>
 
-        <div className="card-body">
+        <div className="card-body ">
           <h2 className="card-title">Instalación de paneles solares</h2>
-          <p>
-            A card component has a figure, a body part, and inside body there
-            are title and actions parts
-          </p>
+          <ul className="list-disc">
+            <li>Ahorra hasta 98% en tu recibo</li>
+            <li>Instalación rápida</li>
+            <li>Monitoreo</li>
+            <li>Mantenimiento y soporte especializado</li>
+          </ul>
         </div>
       </div>
-      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300">
+      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300  border-8 border-amber-400">
         <div className="flex  justify-center">
           <img className="w-25" src={carImage} alt="Shoes" />
         </div>
 
         <div className="card-body">
           <h2 className="card-title">Cargadores eléctricos</h2>
-          <p>
-            A card component has a figure, a body part, and inside body there
-            are title and actions parts
-          </p>
+          <ul className="list-disc">
+            <li>Carga rápida y segura en casa</li>
+            <li>Compatible con todas las marcas</li>
+            <li>Integración con tu sistema solar</li>
+          </ul>
         </div>
       </div>
-      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300">
+      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300  border-8 border-amber-400">
         <div className="flex  justify-center">
           {" "}
           <img className="w-25" src={batteryImage} alt="Shoes" />
@@ -44,10 +47,11 @@ function Servicios() {
 
         <div className="card-body">
           <h2 className="card-title">Baterías</h2>
-          <p>
-            A card component has a figure, a body part, and inside body there
-            are title and actions parts
-          </p>
+          <ul className="list-disc">
+            <li>No te quedes sin energía</li>
+            <li>Ahorro extra al almacenar tu energía solar</li>
+            <li>Mantén funcionando refrigeradores, internet y seguridad</li>
+          </ul>
         </div>
       </div>
     </motion.div>

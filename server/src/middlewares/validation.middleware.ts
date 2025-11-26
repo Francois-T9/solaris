@@ -50,10 +50,8 @@ const validateBill = [
     .withMessage("El correo electrónico es obligatorio")
     .isEmail()
     .withMessage("El correo electrónico debe ser válido")
-
-    // .normalizeEmail()
     .custom(async (value) => {
-      const existingUser = await prisma.bill.findUnique({
+      const existingUser = await prisma.energyRequest.findUnique({
         where: { userEmail: value },
       });
       if (existingUser) {
@@ -61,6 +59,9 @@ const validateBill = [
       }
       return true;
     }),
+  body("paquete").notEmpty().withMessage("Tienes que seleccionar un paquete"),
+
+  // .normalizeEmail()
 ];
 
 const validateCarRequest = [
@@ -80,7 +81,16 @@ const validateCarRequest = [
     .notEmpty()
     .withMessage("El correo electrónico es obligatorio")
     .isEmail()
-    .withMessage("El correo electrónico debe ser válido"),
+    .withMessage("El correo electrónico debe ser válido")
+    .custom(async (value) => {
+      const existingUser = await prisma.chargerRequest.findUnique({
+        where: { userEmail: value },
+      });
+      if (existingUser) {
+        throw new Error("Ya ha mandado su cotización.");
+      }
+      return true;
+    }),
 
   // .normalizeEmail(),
 

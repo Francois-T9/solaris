@@ -1,11 +1,18 @@
+import { motion } from "motion/react";
+import { Link } from "react-router";
 function Paquetes() {
   return (
-    <div className="flex flex-col gap-4 items-center">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="flex flex-col gap-4 items-center"
+    >
       <h1 className="text-2xl font-bold underline">Paquetes</h1>
-      <div className="flex flex-col gap-4 md:flex-row ">
+      <div className="flex flex-col gap-4 lg:flex-row ">
         <div className="card w-80 bg-base-100 shadow-sm transition-transform hover:scale-105 duration-300">
           <div className="card-body">
-            <span className="badge badge-xs badge-success">Económico</span>
+            <span className="badge badge-sm badge-success">Económico</span>
             <div className="flex justify-between">
               <h2 className="text-3xl font-bold">Paquete 1 (3 kW) </h2>
               <span className="text-xl">$37,949.39</span>
@@ -115,13 +122,16 @@ function Paquetes() {
               </li>
             </ul>
             <div className="mt-6">
-              <button className="btn btn-primary btn-block">Elegir</button>
+              <Link to="/cotizacion" className="btn btn-primary btn-block">
+                Elegir
+              </Link>
+              {/* <button className="btn btn-primary btn-block">Elegir</button> */}
             </div>
           </div>
         </div>
         <div className="card w-80 bg-base-100 shadow-sm transition-transform hover:scale-105 duration-300">
           <div className="card-body">
-            <span className="badge badge-xs badge-neutral">Confort</span>
+            <span className="badge badge-sm badge-neutral">Confort</span>
             <div className="flex justify-between">
               <h2 className="text-3xl font-bold">Paquete 2 (6 kW) </h2>
               <span className="text-xl">$70,210.64</span>
@@ -231,13 +241,15 @@ function Paquetes() {
               </li>
             </ul>
             <div className="mt-6">
-              <button className="btn btn-primary btn-block">Elegir</button>
+              <Link to="/cotizacion" className="btn btn-primary btn-block">
+                Elegir
+              </Link>
             </div>
           </div>
         </div>
         <div className="card w-80 bg-base-100 shadow-sm transition-transform hover:scale-105 duration-300">
           <div className="card-body">
-            <span className="badge badge-xs badge-warning">Premium</span>
+            <span className="badge badge-sm badge-warning">Premium</span>
             <div className="flex justify-between">
               <h2 className="text-3xl font-bold">Paquete 3 (8 kW) </h2>
               <span className="text-xl">$99,309.43</span>
@@ -347,12 +359,14 @@ function Paquetes() {
               </li>
             </ul>
             <div className="mt-6">
-              <button className="btn btn-primary btn-block">Elegir</button>
+              <Link to="/cotizacion" className="btn btn-primary btn-block">
+                Elegir
+              </Link>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

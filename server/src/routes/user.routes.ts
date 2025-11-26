@@ -8,7 +8,8 @@ const upload = multer({ storage: multer.memoryStorage() });
 const router = express.Router();
 
 router.get("/bills", usersController.getAllBills);
-router.get("/questions", usersController.getAllUserRequests);
+router.get("/info", usersController.getAllUserRequests);
+router.get("/car", usersController.getAllChargerRequests);
 router.post(
   "/bill",
   upload.single("file"),
@@ -31,5 +32,6 @@ router.post(
 router.get("/brands", usersController.getAllBrands);
 
 router.delete("/bills/:id", usersController.deleteBill);
+router.delete("/chargers/:id", usersController.deleteChargerRequest);
 
 export default router;

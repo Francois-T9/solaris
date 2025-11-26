@@ -74,7 +74,9 @@ function CotizacionAutos() {
         className="select"
         onChange={handleChange}
       >
-        <option disabled={true}>Elige la marca</option>
+        <option disabled value="">
+          Elige la marca
+        </option>
         {allBrands.map((brand) => (
           <option key={brand.name}>{brand.name}</option>
         ))}

@@ -10,7 +10,7 @@ function Servicios() {
       transition={{ duration: 0.8 }}
       className="flex flex-col lg:flex-row gap-4   "
     >
-      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300  border-8 border-amber-400 ">
+      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300  border-8 border-amarillo ">
         <div className="flex  justify-center">
           <img className="w-25" src={solarPanelImage} alt="Shoes" />
         </div>
@@ -25,7 +25,7 @@ function Servicios() {
           </ul>
         </div>
       </div>
-      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300  border-8 border-amber-400">
+      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300  border-8 border-amarillo">
         <div className="flex  justify-center">
           <img className="w-25" src={carImage} alt="Shoes" />
         </div>
@@ -39,7 +39,7 @@ function Servicios() {
           </ul>
         </div>
       </div>
-      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300  border-8 border-amber-400">
+      <div className="card bg-base-100 w-80 shadow-sm  transition-transform hover:scale-105 duration-300  border-8 border-amarillo">
         <div className="flex  justify-center">
           {" "}
           <img className="w-25" src={batteryImage} alt="Shoes" />

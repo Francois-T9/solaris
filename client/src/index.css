@@ -1,11 +1,27 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 @plugin "daisyui";
 
+@tailwind utilities;
 @plugin "daisyui" {
   themes: light --default;
 }
 @custom-variant dark (&:where(.dark, .dark *));
 
+@layer utilities {
+  .btn-warning {
+    --btn-color: #fdbf04; /* your custom background color */
+    --btn-fg: #02224a; /* your custom text color */
+  }
+  .badge-warning {
+    --badge-color: #fdbf04; /* your custom background color */
+    --badge-fg: #02224a; /* your custom text color */
+  }
+  .btn-primary {
+    --btn-color: #02224a; /* your custom background color */
+    --btn-fg: #fdbf04; /* your custom text color */
+  }
+}
 @layer base {
   :root {
     color-scheme: light;
@@ -20,8 +36,15 @@
     transform: scale(1.2);
   }
 }
+
+@theme {
+  --color-amarillo: #fdbf04;
+  --color-azul: #02224a;
+}
 :root {
   color-scheme: light !important;
+  --color-desktop: #3b82f6; /* blue-500 */
+  --color-mobile: #f97316; /* orange-500 */
 }
 
 html,

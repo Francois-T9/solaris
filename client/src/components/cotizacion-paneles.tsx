@@ -8,6 +8,7 @@ function CotizacionPaneles() {
     name: "",
     surname: "",
     email: "",
+    paquete: "",
   });
   const {
     sendBill,
@@ -32,6 +33,7 @@ function CotizacionPaneles() {
     formData.append("name", data.name);
     formData.append("surname", data.surname);
     formData.append("email", data.email);
+    formData.append("paquete", data.paquete);
     if (file) {
       formData.append("file", file);
     }
@@ -74,6 +76,21 @@ function CotizacionPaneles() {
         onChange={handleChange}
         placeholder="Email"
       />
+      <label className="label">Paquete</label>
+      <select
+        name="paquete"
+        value={data.paquete}
+        className="select"
+        onChange={handleChange}
+      >
+        <option value="" disabled>
+          Elige tu paquete
+        </option>
+
+        <option value="Paquete 1">Paquete 1</option>
+        <option value="Paquete 2">Paquete 2</option>
+        <option value="Paquete 3">Paquete 3</option>
+      </select>
       <legend className="label">Recibo de luz</legend>
       <input
         type="file"

@@ -23,7 +23,7 @@ const prisma = new PrismaClient();
 
 const getAllBills = async (req, res) => {
   try {
-    const allBills = await prisma.bill.findMany({
+    const allBills = await prisma.energyRequest.findMany({
       orderBy: { createdAt: "desc" },
     });
 
@@ -37,7 +37,7 @@ const getAllBills = async (req, res) => {
       const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
       bill.billUrl = url;
 
-      await prisma.bill.update({
+      await prisma.energyRequest.update({
         where: {
           id: bill.id,
         },
@@ -48,6 +48,18 @@ const getAllBills = async (req, res) => {
     }
 
     res.status(200).json(allBills);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+const getAllChargerRequests = async (req, res) => {
+  try {
+    const allChargerRequests = await prisma.chargerRequest.findMany({});
+
+    // const userWithChargerRequest = allUsers.filter(
+    //   (user) => user.
+    // );
+    res.status(200).json(allChargerRequests);
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -65,7 +77,7 @@ const getAllBrands = async (req, res) => {
 
 const getAllUserRequests = async (req, res) => {
   try {
-    const allUsers = await prisma.request.findMany();
+    const allUsers = await prisma.infoRequest.findMany();
 
     res.status(200).json(allUsers);
   } catch (err) {
@@ -74,7 +86,7 @@ const getAllUserRequests = async (req, res) => {
 };
 
 const createUserBill = async (req, res) => {
-  const { name, surname } = req.body;
+  const { name, surname, paquete } = req.body;
   const email = req.body["email"];
   const file = req.file;
 
@@ -129,7 +141,7 @@ const createUserBill = async (req, res) => {
         email,
       },
       update: {
-        bill: {
+        energyRequest: {
           upsert: {
             update: {
               billName: fileName,
@@ -138,6 +150,7 @@ const createUserBill = async (req, res) => {
             create: {
               billName: fileName,
               billUrl: url,
+              paquete,
             },
           },
         },
@@ -146,10 +159,11 @@ const createUserBill = async (req, res) => {
         name,
         surname,
         email,
-        bill: {
+        energyRequest: {
           create: {
             billName: fileName,
             billUrl: url,
+            paquete,
           },
         },
       },
@@ -189,7 +203,7 @@ const createUserRequest = async (req, res) => {
         email: data.email,
       },
       update: {
-        request: {
+        infoRequest: {
           upsert: {
             update: {
               requestType: data.requestType,
@@ -206,7 +220,7 @@ const createUserRequest = async (req, res) => {
         name: data.name,
         surname: data.surname,
         email: data.email,
-        request: {
+        infoRequest: {
           create: {
             requestType: data.requestType,
             comment: data.comment,
@@ -225,7 +239,7 @@ const deleteBill = async (req, res) => {
   const id = Number(req.params.id);
 
   try {
-    const bill = await prisma.bill.findFirst({
+    const bill = await prisma.energyRequest.findFirst({
       where: {
         id,
       },
@@ -242,9 +256,31 @@ const deleteBill = async (req, res) => {
     const command = new DeleteObjectCommand(params);
     await s3.send(command);
 
-    await prisma.bill.delete({ where: { id } });
+    await prisma.energyRequest.delete({ where: { id } });
 
     res.status(200).json(bill);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
+const deleteChargerRequest = async (req, res) => {
+  const id = Number(req.params.id);
+
+  try {
+    const request = await prisma.chargerRequest.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!request) {
+      res.status(404).json({ error: "Bill not found" });
+      return;
+    }
+    await prisma.chargerRequest.delete({ where: { id } });
+
+    res.status(200).json(request);
   } catch (err) {
     res.status(500).json({ error: err });
   }
@@ -262,13 +298,26 @@ const createElectricCarRequest = async (req, res) => {
         email,
       },
       update: {
-        car: { connect: { name: manufacturerName } }, // connect to existing manufacturer
+        chargerRequest: {
+          upsert: {
+            update: {
+              manufacturerName,
+            },
+            create: {
+              manufacturerName,
+            },
+          },
+        },
       },
       create: {
         name,
         surname,
         email,
-        car: { connect: { name: manufacturerName } },
+        chargerRequest: {
+          create: {
+            manufacturerName,
+          },
+        },
       },
     });
     res.status(200).json(newEVRequest);
@@ -285,4 +334,6 @@ export default {
   deleteBill,
   getAllBrands,
   createElectricCarRequest,
+  getAllChargerRequests,
+  deleteChargerRequest,
 };

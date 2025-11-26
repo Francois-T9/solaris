@@ -8,6 +8,8 @@ export const useUserStore = create<UsersStore>()((set, get) => ({
   carRequestError: "",
   carRequestSuccess: "",
   allBills: null,
+  allChargerRequests: null,
+
   allBrands: [],
   sendContact: async (data) => {
     const response = await fetch(`http://localhost:3000/api/request`, {
@@ -71,6 +73,19 @@ export const useUserStore = create<UsersStore>()((set, get) => ({
       return false;
     }
   },
+  getChargerRequests: async () => {
+    const response = await fetch(`http://localhost:3000/api/car`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const JSONresponse = await response.json();
+    if (response.status == 200) {
+      set({ allChargerRequests: JSONresponse });
+      return true;
+    } else {
+      return false;
+    }
+  },
   deleteBill: async (billId: number) => {
     const { getBills } = get();
     const response = await fetch(`http://localhost:3000/api/bills/${billId}`, {
@@ -79,6 +94,19 @@ export const useUserStore = create<UsersStore>()((set, get) => ({
     });
     if (response.status == 200) {
       getBills();
+    }
+  },
+  deleteChargerRequest: async (chargerRequestId: number) => {
+    const { getChargerRequests } = get();
+    const response = await fetch(
+      `http://localhost:3000/api/chargers/${chargerRequestId}`,
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    if (response.status == 200) {
+      getChargerRequests();
     }
   },
   getCarBrands: async () => {

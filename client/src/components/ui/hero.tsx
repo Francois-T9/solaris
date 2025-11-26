@@ -21,8 +21,8 @@ function Hero() {
           <p className="mb-5">
             Ahorra energía,cuida el planeta y reduce tus costos.
           </p>
-          <Link to="/cotizacion" className="btn btn-warning btn-lg">
-            Obtén una cotización
+          <Link to="/paquetes" className="btn btn-warning btn-lg">
+            Ver nuestros paquetes
           </Link>
         </div>
       </div>

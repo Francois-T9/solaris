@@ -13,7 +13,7 @@ export type BillData = {
 
 export type Bill = {
   id: number;
-  email: string;
+  userEmail: string;
   billUrl: string;
   billName: string;
   createdAt: string;
@@ -27,12 +27,20 @@ export type BillRequest = {
   email: string;
   name: string;
   surname: string;
+  paquete: string;
 };
 
 export type CarRequest = {
   email: string;
   name: string;
   surname: string;
+  manufacturerName: string;
+};
+
+export type ChargerRequest = {
+  id: number;
+  userEmail: string;
+  createdAt: string;
   manufacturerName: string;
 };
 export type UsersStore = {
@@ -44,6 +52,9 @@ export type UsersStore = {
   getBills: () => Promise<boolean>;
   deleteBill: (billId: number) => void;
   getCarBrands: () => void;
+  deleteChargerRequest: (chargerRequestId: number) => void;
+
+  getChargerRequests: () => void;
 
   contactRequestError: string;
   contactRequestSuccess: string;
@@ -52,5 +63,7 @@ export type UsersStore = {
   carRequestError: string;
   carRequestSuccess: string;
   allBills: Bill[] | null;
+  allChargerRequests: ChargerRequest[] | null;
+
   allBrands: Brand[];
 };

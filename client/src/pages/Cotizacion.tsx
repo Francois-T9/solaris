@@ -1,9 +1,15 @@
 import Steps from "../components/ui/steps";
 import CotizacionPaneles from "../components/cotizacion-paneles";
 import CotizacionAutos from "../components/cotizacion-autos";
+import { motion } from "motion/react";
 function Cotizacion() {
   return (
-    <div className="flex flex-col items-center gap-4 ">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="flex flex-col items-center gap-4 "
+    >
       <h1 className="text-2xl font-bold underline">¿Cómo funciona?</h1>
       <Steps />
       {/* name of each tab group should be unique */}
@@ -29,7 +35,7 @@ function Cotizacion() {
           <CotizacionAutos />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

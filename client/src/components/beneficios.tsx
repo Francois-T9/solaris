@@ -11,7 +11,7 @@ function Beneficios() {
       transition={{ duration: 0.8 }}
       className="flex flex-col lg:flex-row gap-4 "
     >
-      <div className="card bg-base-100 w-80 sm:w-60 shadow-sm border-8 border-amber-400 transition-transform hover:scale-105 duration-300 ">
+      <div className="card bg-base-100 w-80 lg:w-60 shadow-sm border-8 border-amarillo transition-transform hover:scale-105 duration-300 ">
         <div className="flex  justify-center">
           <img className="w-25" src={board} alt="Shoes" />
         </div>
@@ -23,7 +23,7 @@ function Beneficios() {
           </p>
         </div>
       </div>
-      <div className="card bg-base-100 w-80 sm:w-60  shadow-sm border-8 border-amber-400 transition-transform hover:scale-105 duration-300">
+      <div className="card bg-base-100 w-80 lg:w-60  shadow-sm border-8 border-amarillo transition-transform hover:scale-105 duration-300">
         <div className="flex  justify-center">
           <img className="w-25" src={lightBulb} alt="Shoes" />
         </div>
@@ -33,7 +33,7 @@ function Beneficios() {
           <p>Cada kWh solar evita emisiones y cuida el planeta</p>
         </div>
       </div>
-      <div className="card bg-base-100 w-80 sm:w-60  shadow-sm border-8 border-amber-400 transition-transform hover:scale-105 duration-300">
+      <div className="card bg-base-100 w-80 lg:w-60  shadow-sm border-8 border-amarillo transition-transform hover:scale-105 duration-300">
         <div className="flex  justify-center">
           {" "}
           <img className="w-25" src={piggyBank} alt="Shoes" />
@@ -47,7 +47,7 @@ function Beneficios() {
           </p>
         </div>
       </div>
-      <div className="card bg-base-100 w-80 sm:w-60  shadow-sm border-8 border-amber-400 transition-transform hover:scale-105 duration-300">
+      <div className="card bg-base-100 w-80 lg:w-60  shadow-sm border-8 border-amarillo transition-transform hover:scale-105 duration-300">
         <div className="flex  justify-center">
           {" "}
           <img className="w-25" src={battery} alt="Shoes" />

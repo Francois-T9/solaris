@@ -1,10 +1,9 @@
-import React from "react";
-
 function About() {
   return (
     <div className="flex flex-col   items-center gap-4 ">
       <h1 className="text-2xl font-bold underline">¿Quiénes sómos?</h1>
-      <div className="card w-240 bg-base-100 card-sm shadow-sm border-8 border-blue-950">
+      {/* <Chart /> */}
+      <div className="card w-80 lg:w-240 bg-base-100 card-sm shadow-sm border-8 border-azul">
         <div className="card-body">
           <p className="text-xl">
             “En Solaris estamos construyendo el futuro energético de México. No

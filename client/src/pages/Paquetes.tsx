@@ -15,7 +15,7 @@ function Paquetes() {
             <span className="badge badge-sm badge-success">Económico</span>
             <div className="flex justify-between">
               <h2 className="text-3xl font-bold">Paquete 1 (3 kW) </h2>
-              <span className="text-xl">$37,949.39</span>
+              <span className="text-xl">MXN 37,949.39</span>
             </div>
             <ul className="mt-6 flex flex-col gap-2 text-xs">
               <li>
@@ -134,7 +134,7 @@ function Paquetes() {
             <span className="badge badge-sm badge-neutral">Confort</span>
             <div className="flex justify-between">
               <h2 className="text-3xl font-bold">Paquete 2 (6 kW) </h2>
-              <span className="text-xl">$70,210.64</span>
+              <span className="text-xl">MXN 70,210.64</span>
             </div>
             <ul className="mt-6 flex flex-col gap-2 text-xs">
               <li>
@@ -252,7 +252,7 @@ function Paquetes() {
             <span className="badge badge-sm badge-warning">Premium</span>
             <div className="flex justify-between">
               <h2 className="text-3xl font-bold">Paquete 3 (8 kW) </h2>
-              <span className="text-xl">$99,309.43</span>
+              <span className="text-xl">MXN 99,309.43</span>
             </div>
             <ul className="mt-6 flex flex-col gap-2 text-xs">
               <li>

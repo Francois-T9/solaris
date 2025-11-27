@@ -3,6 +3,35 @@ function About() {
     <div className="flex flex-col   items-center gap-4 ">
       <h1 className="text-2xl font-bold underline">¿Quiénes sómos?</h1>
       {/* <Chart /> */}
+
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="card bg-base-100 w-96 shadow-sm ">
+          <div className="flex items-center w-full justify-center">
+            <div className="avatar">
+              <div className="w-24 rounded-full">
+                <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+              </div>
+            </div>
+          </div>
+          <div className="card-body">
+            <h2 className="card-title">Nombre Apellido</h2>
+            <p>Descripcion</p>
+          </div>
+        </div>
+        <div className="card bg-base-100 w-96 shadow-sm ">
+          <div className="flex items-center w-full justify-center">
+            <div className="avatar">
+              <div className="w-24 rounded-full">
+                <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+              </div>
+            </div>
+          </div>
+          <div className="card-body">
+            <h2 className="card-title">Nombre Apellido</h2>
+            <p>Descripcion</p>
+          </div>
+        </div>
+      </div>
       <div className="card w-80 lg:w-240 bg-base-100 card-sm shadow-sm border-8 border-azul">
         <div className="card-body">
           <p className="text-xl">
@@ -15,32 +44,6 @@ function About() {
           </p>
         </div>
       </div>
-      {/* <div className="card bg-base-100 w-96 shadow-sm h-1/2">
-        <div className="flex items-center w-full justify-center">
-          <div className="avatar">
-            <div className="w-24 rounded-full">
-              <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
-            </div>
-          </div>
-        </div>
-        <div className="card-body">
-          <h2 className="card-title">Nombre Apellido</h2>
-          <p>Descripcion</p>
-        </div>
-      </div>
-      <div className="card bg-base-100 w-96 shadow-sm h-1/2">
-        <div className="flex items-center w-full justify-center">
-          <div className="avatar">
-            <div className="w-24 rounded-full">
-              <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
-            </div>
-          </div>
-        </div>
-        <div className="card-body">
-          <h2 className="card-title">Nombre Apellido</h2>
-          <p>Descripcion</p>
-        </div>
-      </div> */}
     </div>
   );
 }

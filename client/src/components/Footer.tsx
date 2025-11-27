@@ -1,4 +1,4 @@
-import logo from "../../public/logo-removebg-preview.png";
+import logo from "/logo-removebg-preview.png";
 
 function Footer() {
   return (

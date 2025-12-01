@@ -1,114 +1,166 @@
-import { useEffect, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { z } from "zod";
 import { useUserStore } from "../store/user.store";
-import type { BillRequest } from "../types/types";
+import type { EnergyFormFields } from "../types/types";
 
 function CotizacionPaneles() {
-  const [file, setFile] = useState<File | null>(null);
-  const [data, setData] = useState<BillRequest>({
-    name: "",
-    surname: "",
-    email: "",
-    paquete: "",
-  });
+  const { t } = useTranslation();
   const {
     sendBill,
-    billingRequestSuccess,
     billingRequestError,
     resetBillingState,
+    billingRequestSuccess,
   } = useUserStore();
+
+  const schema = z.object({
+    name: z
+      .string()
+      .nonempty(t("quote.panelsForm.nameErrorOne"))
+      .min(3, t("quote.panelsForm.nameErrorTwo")),
+
+    surname: z
+      .string()
+      .nonempty(t("quote.panelsForm.surnameErrorOne"))
+      .min(3, t("quote.panelsForm.surnameErrorTwo")),
+
+    email: z
+      .string()
+      .nonempty(t("quote.panelsForm.emailErrorOne"))
+      .email(t("quote.panelsForm.emailErrorTwo")),
+
+    paquete: z.string().nonempty(t("quote.panelsForm.packageError")),
+
+    file: z
+      .instanceof(FileList)
+      .refine((files) => files?.length > 0, {
+        message: t("quote.panelsForm.billErrorOne"),
+      })
+      .refine(
+        (file) => ["application/pdf"].includes(file?.item(0)?.type ?? ""),
+        {
+          message: t("quote.panelsForm.billErrorTwo"),
+        }
+      ),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<EnergyFormFields>({
+    resolver: zodResolver(schema),
+  });
+
   useEffect(() => {
     resetBillingState();
   }, [resetBillingState]);
-  const handleChange = (e: { target: { name: string; value: string } }) => {
-    const { name, value } = e.target;
-    setData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<EnergyFormFields> = async (data) => {
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("surname", data.surname);
     formData.append("email", data.email);
     formData.append("paquete", data.paquete);
-    if (file) {
-      formData.append("file", file);
+
+    if (data.file) {
+      formData.append("file", data.file[0]); // RHF stores files in FileList
     }
+
     await sendBill(formData);
   };
+
   return (
     <form
-      action=""
       method="POST"
       encType="multipart/form-data"
-      className=" bg-base-200 border-base-300 rounded-box border p-4 text-md flex flex-col gap-2 w-fit "
-      onSubmit={handleSubmit}
+      className="bg-base-200 border-base-300 rounded-box border p-4 text-md flex flex-col gap-2 w-fit"
+      onSubmit={handleSubmit(onSubmit)}
     >
-      {" "}
-      <legend className="fieldset-legend">Formulario de cotización</legend>
-      <label className="label">Nombre</label>
+      <legend className="fieldset-legend">
+        {t("quote.panelsForm.legend")}
+      </legend>
+
+      {/* Name */}
+      <label className="label">{t("quote.panelsForm.name")}</label>
       <input
-        name="name"
-        value={data.name}
+        {...register("name")}
         type="text"
         className="input"
-        placeholder="Nombre"
-        onChange={handleChange}
+        placeholder={t("quote.panelsForm.namePlaceholder")}
       />
-      <label className="label">Apellido</label>
+      {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+
+      {/* Surname */}
+      <label className="label">{t("quote.panelsForm.surname")}</label>
       <input
-        name="surname"
-        value={data.surname}
+        {...register("surname")}
         type="text"
         className="input"
-        placeholder="Apellido"
-        onChange={handleChange}
+        placeholder={t("quote.panelsForm.surnamePlaceholder")}
       />
-      <label className="label">Email</label>
+      {errors.surname && (
+        <p className="text-red-500">{errors.surname.message}</p>
+      )}
+
+      {/* Email */}
+      <label className="label">{t("quote.panelsForm.email")}</label>
       <input
+        {...register("email")}
         type="email"
         className="input"
-        name="email"
-        value={data.email}
-        onChange={handleChange}
-        placeholder="Email"
+        placeholder={t("quote.panelsForm.emailPlaceholder")}
       />
-      <label className="label">Paquete</label>
-      <select
-        name="paquete"
-        value={data.paquete}
-        className="select"
-        onChange={handleChange}
-      >
-        <option value="" disabled>
-          Elige tu paquete
-        </option>
+      {errors.email && <p className="text-red-500">{errors.email.message}</p>}
 
-        <option value="Paquete 1">Paquete 1</option>
-        <option value="Paquete 2">Paquete 2</option>
-        <option value="Paquete 3">Paquete 3</option>
+      {/* Paquete */}
+      <label className="label">{t("quote.panelsForm.package")}</label>
+      <select {...register("paquete")} className="select" defaultValue="">
+        <option value="" disabled>
+          {t("quote.panelsForm.packagePlaceholder")}
+        </option>
+        <option value="Paquete 1">
+          {t("quote.panelsForm.packageOptions.package1")}
+        </option>
+        <option value="Paquete 2">
+          {t("quote.panelsForm.packageOptions.package2")}
+        </option>
+        <option value="Paquete 3">
+          {t("quote.panelsForm.packageOptions.package3")}
+        </option>
       </select>
-      <legend className="label">Recibo de luz</legend>
-      <input
-        type="file"
-        name="file"
-        onChange={(e) => setFile(e.target.files![0])}
-        className="file-input"
-      />
+      {errors.paquete && (
+        <p className="text-red-500">{errors.paquete.message}</p>
+      )}
+
+      {/* File */}
+      <legend className="label">{t("quote.panelsForm.bill")}</legend>
+      <input {...register("file")} type="file" className="file-input" />
       <label className="label text-sm">
-        Formato .pdf solamente. Maximo 2 MB
+        {t("quote.panelsForm.billFormat")}
       </label>
-      {billingRequestSuccess.length > 0 ? (
-        <p className="text-green-500">{billingRequestSuccess}</p>
-      ) : null}
-      {billingRequestError.length > 0 ? (
-        <p className="text-red-500">{billingRequestError}</p>
-      ) : null}
-      <button className="btn btn-neutral mt-4 text-lg w-80 " type="submit">
-        Solicitar
+      {errors.file && <p className="text-red-500">{errors.file.message}</p>}
+
+      {billingRequestError && (
+        <p className="text-red-500">
+          {t(`quote.panelsForm.errors.${billingRequestError}`)}
+        </p>
+      )}
+      {billingRequestSuccess && (
+        <p className="text-green-500">{t("quote.panelsForm.successMessage")}</p>
+      )}
+
+      {/* Submit */}
+      <button
+        disabled={isSubmitting}
+        className="btn btn-neutral mt-4 text-lg w-80"
+        type="submit"
+      >
+        {isSubmitting
+          ? t("quote.panelsForm.isSubmitting")
+          : t("quote.panelsForm.submit")}
       </button>
     </form>
   );

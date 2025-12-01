@@ -1,8 +1,11 @@
+import { useTranslation } from "react-i18next";
 import logo from "/logo-removebg-preview.png";
 
 function Footer() {
+  const { t } = useTranslation();
+
   return (
-    <footer className="footer footer-horizontal bg-base-200  p-4  ">
+    <footer className="footer footer-horizontal bg-base-200  p-4 flex items-end sm:pl-40 pr-40 sm:justify-between ">
       <aside>
         <img
           src={logo}
@@ -11,13 +14,13 @@ function Footer() {
         />
 
         <p>
-          Solaris México
+          {t("footer.company")}
           <br />
-          Proveedor de energia limpia
+          {t("footer.tagline")}
         </p>
       </aside>
       <nav>
-        <h6 className="footer-title">Redes sociales</h6>
+        <h6 className="footer-title">{t("footer.socialMedia")}</h6>
         <div className="grid grid-flow-col gap-4">
           <a href="https://www.instagram.com/es_solarismx/" target="_blank">
             <svg

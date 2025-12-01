@@ -1,0 +1,252 @@
+{
+  "header": {
+    "packages": "Paquetes",
+    "about": "¿Quiénes somos?",
+    "quote": "Cotizar",
+    "contact": "Contacto",
+    "faq": "F.A.Q",
+    "quoteNow": "¡Cotiza ya!"
+  },
+
+  "packages": {
+    "title": "Paquetes",
+
+    "card1": {
+      "label": "Económico",
+      "name": "Paquete 1 (3 kW)",
+      "price": "MXN 37,949.39",
+      "features": {
+        "clima": "Clima (1 Ton)",
+        "fridge": "Refrigerador",
+        "microwave": "Microondas",
+        "lights": "Luces y contactos",
+        "pump": "Bomba de agua",
+        "high": "Equipos de alto consumo"
+      },
+      "choose": "Elegir"
+    },
+
+    "card2": {
+      "label": "Confort",
+      "name": "Paquete 2 (6 kW)",
+      "price": "MXN 70,210.64",
+      "features": {
+        "climas": "3 climas de 1 Ton",
+        "fridge": "Refrigerador",
+        "microwave": "Microondas",
+        "lights": "Luces y contactos",
+        "pump": "Bomba de agua",
+        "high": "Equipos de alto consumo"
+      },
+      "choose": "Elegir"
+    },
+
+    "card3": {
+      "label": "Premium",
+      "name": "Paquete 3 (8 kW)",
+      "price": "MXN 99,309.43",
+      "features": {
+        "climas": "3 climas de 1 Ton",
+        "fridge": "Refrigerador",
+        "microwave": "Microondas",
+        "lights": "Luces y contactos",
+        "pump": "Bomba de agua",
+        "high": "Equipos de alto consumo"
+      },
+      "choose": "Elegir"
+    }
+  },
+  "about": {
+    "title": "¿Quiénes sómos?",
+    "mission": "En Solaris estamos construyendo el futuro energético de México. No solo instalamos paneles: integramos sistemas completos de energía limpia, baterías inteligentes y cargadores para vehículos eléctricos. Nuestro objetivo es liderar la transición hacia hogares y negocios autosuficientes, conectados y preparados para los próximos 10 años de innovación."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "questions": {
+      "q1": {
+        "question": "¿Cómo funcionan los paneles solares?",
+        "answer": "Los paneles capturan la luz del sol y la convierten en electricidad que puedes usar en casa o negocio."
+      },
+      "q2": {
+        "question": "¿Cuánto puedo ahorrar con paneles solares?",
+        "answer": "Depende de tu consumo, pero la mayoría de nuestros clientes ahorra entre 70% y 98% en su recibo."
+      },
+      "q3": {
+        "question": "¿Requieren mantenimiento?",
+        "answer": "Solo limpieza ocasional y una revisión anual para asegurar su eficiencia."
+      },
+      "q4": {
+        "question": "¿Qué puedo alimentar con las baterías de respaldo?",
+        "answer": "Refrigerador, luces, internet, cámaras de seguridad, computadora y más, incluso durante apagones."
+      },
+      "q5": {
+        "question": "¿Qué tan rápido cargará mi coche eléctrico?",
+        "answer": "Depende del cargador y del modelo del coche, pero normalmente entre 2 y 6 horas con un cargador Nivel 2."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "form": {
+      "legend": "Formulario de contacto",
+      "name": "Nombre",
+      "namePlaceholder": "Nombre",
+      "nameErrorOne": "El nombre es requerido",
+      "nameErrorTwo": "El nombre debe tener al menos 3 caracteres",
+      "surname": "Apellido",
+      "surnamePlaceholder": "Apellido",
+      "surnameErrorOne": "El apellido es requerido",
+      "surnameErrorTwo": "El apellido debe tener al menos 3 caracteres",
+      "email": "Email",
+      "emailPlaceholder": "Email",
+      "emailErrorOne": "El email es requerido",
+      "emailErrorTwo": "Por favor ingresa un email válido",
+      "requestType": "Tipo de solicitud",
+      "requestTypePlaceholder": "Elige una opción",
+      "requestTypeError": "El tipo de solicitud es requerido",
+      "requestOptions": {
+        "information": "Información",
+        "shipping": "Envío",
+        "maintenance": "Mantenimiento"
+      },
+      "question": "Tu pregunta",
+      "questionPlaceholder": "Indiquenos su pregunta",
+      "questionError": "La pregunta es requerida",
+      "questionErrorMin": "La pregunta debe tener al menos 10 caracteres",
+      "submit": "Enviar"
+    },
+    "info": {
+      "title": "Información de contacto",
+      "phone": "Teléfono"
+    }
+  },
+  "footer": {
+    "company": "Solaris México",
+    "tagline": "Proveedor de energia limpia",
+    "socialMedia": "Redes sociales"
+  },
+  "quote": {
+    "title": "¿Cómo funciona?",
+    "steps": {
+      "step1": "Rellena el formulario",
+      "step2": "Elige tu paquete",
+      "step3": "Te contactamos en 24h"
+    },
+    "tabs": {
+      "panels": "Paneles",
+      "chargers": "Cargadores eléctricos"
+    },
+    "panelsForm": {
+      "legend": "Formulario de cotización",
+      "name": "Nombre",
+      "nameErrorOne": "El nombre es requerido",
+      "nameErrorTwo": "El nombre debe tener al menos 3 caracteres",
+      "namePlaceholder": "Nombre",
+      "surname": "Apellido",
+      "surnameErrorOne": "El apellido es requerido",
+      "surnameErrorTwo": "El apellido debe tener al menos 3 caracteres",
+      "surnamePlaceholder": "Apellido",
+      "email": "Email",
+      "emailErrorOne": "El email es requerido",
+      "emailErrorTwo": "Por favor ingresa un email válido",
+      "emailPlaceholder": "Email",
+      "package": "Paquete",
+      "packageError": "El paquete es requerido",
+      "packagePlaceholder": "Elige tu paquete",
+      "packageOptions": {
+        "package1": "Paquete 1",
+        "package2": "Paquete 2",
+        "package3": "Paquete 3"
+      },
+      "bill": "Recibo de luz",
+      "billErrorOne": "El recibo es requerido",
+      "billErrorTwo": "Formato inválido. Solo .pdf hasta 2 MB",
+      "billFormat": "Formato .pdf solamente. Maximo 2 MB",
+      "submit": "Solicitar",
+      "isSubmitting": "Enviando...",
+      "errors": {
+        "EMAIL_EXISTS": "Este correo ya está registrado"
+      },
+      "successMessage": "¡Tu solicitud ha sido enviada con éxito!"
+    },
+    "carsForm": {
+      "legend": "Formulario de cotización",
+      "name": "Nombre",
+      "namePlaceholder": "Nombre",
+      "surname": "Apellido",
+      "surnamePlaceholder": "Apellido",
+      "email": "Email",
+      "emailPlaceholder": "Email",
+      "carBrand": "Marca de auto",
+      "carBrandError": "La marca es requerida",
+      "carBrandPlaceholder": "Elige la marca",
+      "required": "Obligatorio",
+      "submit": "Solicitar"
+    }
+  },
+  "home": {
+    "whyInvest": "¿Porqué invertir en paneles solares ?",
+    "howMuchSave": "¿Que tanto puedes ahorrar ?",
+    "ourServices": "Nuestros servicios",
+    "benefits": "Beneficios",
+    "hero": {
+      "title": "Solaris",
+      "subtitle": "Energy solutions",
+      "tagline": "Nosotros los hacemos por ti.",
+      "description": "Ahorra energía,cuida el planeta y reduce tus costos.",
+      "button": "Ver paquetes"
+    },
+    "whatsapp": {
+      "accountName": "Solaris | Energy Solutions",
+      "initialMessageByServer": "Hola! ¿Cómo te podemos ayudar?",
+      "initialMessageByClient": "¡Hola! He encontrado tu número en tu página web. Te escribo acerca de...",
+      "statusMessage": "Disponible",
+      "startChatText": "Empieza a hablar con nosotros!"
+    },
+    "beneficios": {
+      "card1": {
+        "title": "Sin tramites tardados",
+        "description": "Nosotros resolvemos todos los tramites de manera rápida y eficaz"
+      },
+      "card2": {
+        "title": "Reduce tu Huella de Carbono",
+        "description": "Cada kWh solar evita emisiones y cuida el planeta"
+      },
+      "card3": {
+        "title": "Ahorro a Largo Plazo",
+        "description": "Reduce tu recibo desde el primer mes y recupera tu inversión en pocos años"
+      },
+      "card4": {
+        "title": "Energía Segura y Confiable",
+        "description": "Menos apagones, más tranquilidad"
+      }
+    },
+    "servicios": {
+      "card1": {
+        "title": "Instalación de paneles solares",
+        "features": {
+          "feature1": "Ahorra hasta 98% en tu recibo",
+          "feature2": "Instalación rápida",
+          "feature3": "Monitoreo",
+          "feature4": "Mantenimiento y soporte especializado"
+        }
+      },
+      "card2": {
+        "title": "Cargadores eléctricos",
+        "features": {
+          "feature1": "Carga rápida y segura en casa",
+          "feature2": "Compatible con todas las marcas",
+          "feature3": "Integración con tu sistema solar"
+        }
+      },
+      "card3": {
+        "title": "Baterías",
+        "features": {
+          "feature1": "No te quedes sin energía",
+          "feature2": "Ahorro extra al almacenar tu energía solar",
+          "feature3": "Mantén funcionando refrigeradores, internet y seguridad"
+        }
+      }
+    }
+  }
+}

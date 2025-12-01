@@ -1,8 +1,12 @@
 import { motion } from "motion/react";
-import carImage from "../assets/car-electric.svg";
-import batteryImage from "../assets/battery-charging-50.svg";
-import solarPanelImage from "../assets/solar-panel-large.svg";
+import { useTranslation } from "react-i18next";
+import batteryImage from "../assets/Icône batterie 50.svg";
+import solarPanelImage from "../assets/Icône solaire 24dp.svg";
+import carImage from "../assets/Icône voiture électrique.svg";
+
 function Servicios() {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -16,12 +20,12 @@ function Servicios() {
         </div>
 
         <div className="card-body ">
-          <h2 className="card-title">Instalación de paneles solares</h2>
+          <h2 className="card-title">{t("home.servicios.card1.title")}</h2>
           <ul className="list-disc">
-            <li>Ahorra hasta 98% en tu recibo</li>
-            <li>Instalación rápida</li>
-            <li>Monitoreo</li>
-            <li>Mantenimiento y soporte especializado</li>
+            <li>{t("home.servicios.card1.features.feature1")}</li>
+            <li>{t("home.servicios.card1.features.feature2")}</li>
+            <li>{t("home.servicios.card1.features.feature3")}</li>
+            <li>{t("home.servicios.card1.features.feature4")}</li>
           </ul>
         </div>
       </div>
@@ -31,11 +35,11 @@ function Servicios() {
         </div>
 
         <div className="card-body">
-          <h2 className="card-title">Cargadores eléctricos</h2>
+          <h2 className="card-title">{t("home.servicios.card2.title")}</h2>
           <ul className="list-disc">
-            <li>Carga rápida y segura en casa</li>
-            <li>Compatible con todas las marcas</li>
-            <li>Integración con tu sistema solar</li>
+            <li>{t("home.servicios.card2.features.feature1")}</li>
+            <li>{t("home.servicios.card2.features.feature2")}</li>
+            <li>{t("home.servicios.card2.features.feature3")}</li>
           </ul>
         </div>
       </div>
@@ -46,11 +50,11 @@ function Servicios() {
         </div>
 
         <div className="card-body">
-          <h2 className="card-title">Baterías</h2>
+          <h2 className="card-title">{t("home.servicios.card3.title")}</h2>
           <ul className="list-disc">
-            <li>No te quedes sin energía</li>
-            <li>Ahorro extra al almacenar tu energía solar</li>
-            <li>Mantén funcionando refrigeradores, internet y seguridad</li>
+            <li>{t("home.servicios.card3.features.feature1")}</li>
+            <li>{t("home.servicios.card3.features.feature2")}</li>
+            <li>{t("home.servicios.card3.features.feature3")}</li>
           </ul>
         </div>
       </div>

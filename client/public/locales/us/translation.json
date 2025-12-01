@@ -1,0 +1,252 @@
+{
+  "header": {
+    "packages": "Packages",
+    "about": "About us",
+    "quote": "Quote",
+    "contact": "Contact",
+    "faq": "F.A.Q",
+    "quoteNow": "Get a quote!"
+  },
+
+  "packages": {
+    "title": "Packages",
+
+    "card1": {
+      "label": "Economic",
+      "name": "Package 1 (3 kW)",
+      "price": "USD 2099.95",
+      "features": {
+        "clima": "A/C (1 Ton)",
+        "fridge": "Refrigerator",
+        "microwave": "Microwave",
+        "lights": "Lights and outlets",
+        "pump": "Water pump",
+        "high": "High-consumption equipment"
+      },
+      "choose": "Choose"
+    },
+
+    "card2": {
+      "label": "Comfort",
+      "name": "Package 2 (6 kW)",
+      "price": "USD 3799.95",
+      "features": {
+        "climas": "3 A/C units (1 Ton)",
+        "fridge": "Refrigerator",
+        "microwave": "Microwave",
+        "lights": "Lights and outlets",
+        "pump": "Water pump",
+        "high": "High-consumption equipment"
+      },
+      "choose": "Choose"
+    },
+
+    "card3": {
+      "label": "Premium",
+      "name": "Package 3 (8 kW)",
+      "price": "USD 5499.95",
+      "features": {
+        "climas": "3 A/C units (1 Ton)",
+        "fridge": "Refrigerator",
+        "microwave": "Microwave",
+        "lights": "Lights and outlets",
+        "pump": "Water pump",
+        "high": "High-consumption equipment"
+      },
+      "choose": "Choose"
+    }
+  },
+  "about": {
+    "title": "Who are we?",
+    "mission": "At Solaris, we are building Mexico's energy future. We don't just install panels: we integrate complete clean energy systems, smart batteries, and electric vehicle chargers. Our goal is to lead the transition toward self-sufficient, connected homes and businesses prepared for the next 10 years of innovation."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": {
+      "q1": {
+        "question": "How do solar panels work?",
+        "answer": "The panels capture sunlight and convert it into electricity that you can use at home or business."
+      },
+      "q2": {
+        "question": "How much can I save with solar panels?",
+        "answer": "It depends on your consumption, but most of our clients save between 70% and 98% on their bill."
+      },
+      "q3": {
+        "question": "Do they require maintenance?",
+        "answer": "Only occasional cleaning and an annual inspection to ensure their efficiency."
+      },
+      "q4": {
+        "question": "What can I power with backup batteries?",
+        "answer": "Refrigerator, lights, internet, security cameras, computer and more, even during power outages."
+      },
+      "q5": {
+        "question": "How fast will my electric car charge?",
+        "answer": "It depends on the charger and car model, but typically between 2 and 6 hours with a Level 2 charger."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "form": {
+      "legend": "Contact Form",
+      "name": "Name",
+      "namePlaceholder": "Name",
+      "nameErrorOne": "Name is required",
+      "nameErrorTwo": "Name must be at least 3 characters",
+      "surname": "Last Name",
+      "surnameErrorOne": "Last Name is required",
+      "surnameErrorTwo": "Last Name must be at least 3 characters",
+      "surnamePlaceholder": "Last Name",
+      "email": "Email",
+      "emailPlaceholder": "Email",
+      "emailErrorOne": "Email is required",
+      "emailErrorTwo": "Please enter a valid email",
+      "requestType": "Request Type",
+      "requestTypePlaceholder": "Choose an option",
+      "requestTypeError": "Request type is required",
+      "requestOptions": {
+        "information": "Information",
+        "shipping": "Shipping",
+        "maintenance": "Maintenance"
+      },
+      "question": "Your Question",
+      "questionPlaceholder": "Tell us your question",
+      "questionError": "Question is required",
+      "questionErrorMin": "Question must be at least 10 characters",
+      "submit": "Submit"
+    },
+    "info": {
+      "title": "Contact information",
+      "phone": "Phone"
+    }
+  },
+  "footer": {
+    "company": "Solaris Mexico",
+    "tagline": "Clean energy provider",
+    "socialMedia": "Social Media"
+  },
+  "quote": {
+    "title": "How does it work?",
+    "steps": {
+      "step1": "Fill out the form",
+      "step2": "Choose your package",
+      "step3": "We'll contact you in 24h"
+    },
+    "tabs": {
+      "panels": "Solar cells",
+      "chargers": "Electric Chargers"
+    },
+    "panelsForm": {
+      "legend": "Quote Form",
+      "name": "Name",
+      "nameErrorOne": "Name is required",
+      "nameErrorTwo": "Name must be at least 3 characters",
+      "namePlaceholder": "Name",
+      "surname": "Last Name",
+      "surnameErrorOne": "Last Name is required",
+      "surnameErrorTwo": "Last Name must be at least 3 characters",
+      "surnamePlaceholder": "Last Name",
+      "email": "Email",
+      "emailErrorOne": "Email is required",
+      "emailErrorTwo": "Please enter a valid email",
+      "emailPlaceholder": "Email",
+      "package": "Package",
+      "packageError": "Package is required",
+      "packagePlaceholder": "Choose your package",
+      "packageOptions": {
+        "package1": "Package 1",
+        "package2": "Package 2",
+        "package3": "Package 3"
+      },
+      "bill": "Energy Bill",
+      "billErrorOne": "Bill is required",
+      "billErrorTwo": "Invalid format. .pdf only up to 2 MB",
+      "billFormat": ".pdf format only. Maximum 2 MB",
+      "submit": "Submit",
+      "isSubmitting": "Submitting...",
+      "errors": {
+        "EMAIL_EXISTS": "This email is already registered"
+      },
+      "successMessage": "Your request has been sent successfully!"
+    },
+    "carsForm": {
+      "legend": "Quote Form",
+      "name": "Name",
+      "namePlaceholder": "Name",
+      "surname": "Last Name",
+      "surnamePlaceholder": "Last Name",
+      "email": "Email",
+      "emailPlaceholder": "Email",
+      "carBrand": "Car Brand",
+      "carBrandError": "Brand is required",
+      "carBrandPlaceholder": "Choose the brand",
+      "required": "Required",
+      "submit": "Request"
+    }
+  },
+  "home": {
+    "whyInvest": "Why invest in solar panels?",
+    "howMuchSave": "How much can you save?",
+    "ourServices": "Our Services",
+    "benefits": "Benefits",
+    "hero": {
+      "title": "Solaris",
+      "subtitle": "Energy solutions",
+      "tagline": "We do them for you.",
+      "description": "Save energy, protect the planet and reduce your costs.",
+      "button": "View packages"
+    },
+    "whatsapp": {
+      "accountName": "Solaris | Energy Solutions",
+      "initialMessageByServer": "Hello! How can we help you?",
+      "initialMessageByClient": "Hello! I found your number on your website. I'm writing about...",
+      "statusMessage": "Available",
+      "startChatText": "Start talking with us!"
+    },
+    "beneficios": {
+      "card1": {
+        "title": "No Lengthy Procedures",
+        "description": "We handle all procedures quickly and efficiently"
+      },
+      "card2": {
+        "title": "Reduce Your Carbon Footprint",
+        "description": "Each solar kWh avoids emissions and protects the planet"
+      },
+      "card3": {
+        "title": "Long-Term Savings",
+        "description": "Reduce your bill from the first month and recover your investment in a few years"
+      },
+      "card4": {
+        "title": "Safe and Reliable Energy",
+        "description": "Fewer blackouts, more peace of mind"
+      }
+    },
+    "servicios": {
+      "card1": {
+        "title": "Solar Panel Installation",
+        "features": {
+          "feature1": "Save up to 98% on your bill",
+          "feature2": "Fast installation",
+          "feature3": "Monitoring",
+          "feature4": "Specialized maintenance and support"
+        }
+      },
+      "card2": {
+        "title": "Electric Chargers",
+        "features": {
+          "feature1": "Fast and safe charging at home",
+          "feature2": "Compatible with all brands",
+          "feature3": "Integration with your solar system"
+        }
+      },
+      "card3": {
+        "title": "Batteries",
+        "features": {
+          "feature1": "Never run out of energy",
+          "feature2": "Extra savings by storing your solar energy",
+          "feature3": "Keep refrigerators, internet and security running"
+        }
+      }
+    }
+  }
+}

@@ -1,12 +1,14 @@
-import React from "react";
+import { useTranslation } from "react-i18next";
 
 function Steps() {
+  const { t } = useTranslation();
+
   return (
     <div>
       <ul className="steps">
-        <li className="step step-primary">Rellena el formulario</li>
-        <li className="step step-primary">Elige tu paquete</li>
-        <li className="step ">Te contactamos en 24h</li>
+        <li className="step step-primary">{t("quote.steps.step1")}</li>
+        <li className="step step-primary">{t("quote.steps.step2")}</li>
+        <li className="step ">{t("quote.steps.step3")}</li>
       </ul>
     </div>
   );

@@ -6,6 +6,25 @@ export type ContactData = {
   comment: string;
 };
 
+export type EnergyFormFields = {
+  name: string;
+  surname: string;
+  email: string;
+  paquete: string;
+  file: FileList;
+};
+
+export type FlagsStore = {
+  urlArray: Country[];
+  fetchFlags: () => void;
+};
+
+export type Country = {
+  code: string;
+  language: string;
+  flagUrl: string;
+};
+
 export type BillData = {
   email: string;
   file: string;

@@ -1,9 +1,13 @@
 import { motion } from "motion/react";
-import piggyBank from "../assets/piggy-bank-outline.svg";
+import { useTranslation } from "react-i18next";
 import battery from "../assets/battery-charging.svg";
 import board from "../assets/clipboard-edit-outline.svg";
-import lightBulb from "../assets/lightbulb-on-outline.svg";
+import lightBulb from "../assets/Icône Light Mode.svg";
+import piggyBank from "../assets/savings_24dp_02224A_FILL0_wght400_GRAD0_opsz24.svg";
+
 function Beneficios() {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -17,10 +21,8 @@ function Beneficios() {
         </div>
 
         <div className="card-body">
-          <h2 className="card-title">Sin tramites tardados</h2>
-          <p>
-            Nosotros resolvemos todos los tramites de manera rápida y eficaz
-          </p>
+          <h2 className="card-title">{t("home.beneficios.card1.title")}</h2>
+          <p>{t("home.beneficios.card1.description")}</p>
         </div>
       </div>
       <div className="card bg-base-100 w-80 lg:w-60  shadow-sm border-8 border-amarillo transition-transform hover:scale-105 duration-300">
@@ -29,8 +31,8 @@ function Beneficios() {
         </div>
 
         <div className="card-body">
-          <h2 className="card-title">Reduce tu Huella de Carbono</h2>
-          <p>Cada kWh solar evita emisiones y cuida el planeta</p>
+          <h2 className="card-title">{t("home.beneficios.card2.title")}</h2>
+          <p>{t("home.beneficios.card2.description")}</p>
         </div>
       </div>
       <div className="card bg-base-100 w-80 lg:w-60  shadow-sm border-8 border-amarillo transition-transform hover:scale-105 duration-300">
@@ -40,11 +42,8 @@ function Beneficios() {
         </div>
 
         <div className="card-body">
-          <h2 className="card-title">Ahorro a Largo Plazo</h2>
-          <p>
-            Reduce tu recibo desde el primer mes y recupera tu inversión en
-            pocos años
-          </p>
+          <h2 className="card-title">{t("home.beneficios.card3.title")}</h2>
+          <p>{t("home.beneficios.card3.description")}</p>
         </div>
       </div>
       <div className="card bg-base-100 w-80 lg:w-60  shadow-sm border-8 border-amarillo transition-transform hover:scale-105 duration-300">
@@ -54,8 +53,8 @@ function Beneficios() {
         </div>
 
         <div className="card-body">
-          <h2 className="card-title">Energía Segura y Confiable</h2>
-          <p>Menos apagones, más tranquilidad</p>
+          <h2 className="card-title">{t("home.beneficios.card4.title")}</h2>
+          <p>{t("home.beneficios.card4.description")}</p>
         </div>
       </div>
     </motion.div>

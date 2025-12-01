@@ -1,5 +1,5 @@
-import type { UsersStore } from "../types/types";
 import { create } from "zustand";
+import type { UsersStore } from "../types/types";
 export const useUserStore = create<UsersStore>()((set, get) => ({
   contactRequestError: "",
   contactRequestSuccess: "",
@@ -38,10 +38,10 @@ export const useUserStore = create<UsersStore>()((set, get) => ({
     if (response.status == 200) {
       set({
         carRequestError: "",
-        carRequestSuccess: "Su solicitud ha sido enviada",
+        carRequestSuccess: "SUCCESS",
       });
     } else {
-      set({ carRequestError: jsonResponse.error });
+      set({ carRequestError: jsonResponse.error, carRequestSuccess: "" });
     }
   },
   sendBill: async (data) => {
@@ -51,12 +51,13 @@ export const useUserStore = create<UsersStore>()((set, get) => ({
     });
     const JSONresponse = await response.json();
     if (response.status == 200) {
-      set({ billingRequestSuccess: "Su requesta ha sido enviada" });
+      set({ billingRequestSuccess: "SUCCESS" });
       set({ billingRequestError: "" });
     } else {
       set({ billingRequestError: JSONresponse.error });
       if (JSONresponse.error.message) {
         set({ billingRequestError: JSONresponse.error.message });
+        set({ billingRequestSuccess: "" });
       }
     }
   },

@@ -1,14 +1,15 @@
+import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import Cotizacion from "./pages/Cotizacion";
-import Contacto from "./pages/Contacto";
 import About from "./pages/About";
-import FAQ from "./pages/FAQ";
 import Admin from "./pages/Admin";
-import { useUserStore } from "./store/user.store";
-import { useEffect, useState } from "react";
+import Contacto from "./pages/Contacto";
+import Cotizacion from "./pages/Cotizacion";
+import FAQ from "./pages/FAQ";
+import Home from "./pages/Home";
 import Paquetes from "./pages/Paquetes";
+import { useFlagsStore } from "./store/flags.store";
+import { useUserStore } from "./store/user.store";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,10 +49,15 @@ const router = createBrowserRouter([
 function App() {
   const { getBills, getCarBrands, getChargerRequests } = useUserStore();
   const [isAppReady, setIsAppReady] = useState<boolean>(false);
-
+  const { fetchFlags } = useFlagsStore();
   useEffect(() => {
     const init = async () => {
-      await Promise.all([getBills(), getCarBrands(), getChargerRequests()]);
+      await Promise.all([
+        getBills(),
+        getCarBrands(),
+        getChargerRequests(),
+        fetchFlags(),
+      ]);
 
       setIsAppReady(true);
     };

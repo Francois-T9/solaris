@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const users_controller_1 = __importDefault(require("../controllers/users.controller"));
+const validation_middleware_1 = __importDefault(require("../middlewares/validation.middleware"));
+const multer_1 = __importDefault(require("multer"));
+const upload = (0, multer_1.default)({ storage: multer_1.default.memoryStorage() });
+const router = express_1.default.Router();
+router.get("/bills", users_controller_1.default.getAllBills);
+router.get("/info", users_controller_1.default.getAllUserRequests);
+router.get("/car", users_controller_1.default.getAllChargerRequests);
+router.post("/bill", upload.single("file"), validation_middleware_1.default.validateBill, users_controller_1.default.createUserBill);
+router.post("/request", validation_middleware_1.default.validateUser, users_controller_1.default.createUserRequest);
+router.post("/car", upload.none(), validation_middleware_1.default.validateCarRequest, users_controller_1.default.createElectricCarRequest);
+router.get("/brands", users_controller_1.default.getAllBrands);
+router.delete("/bills/:id", users_controller_1.default.deleteBill);
+router.delete("/chargers/:id", users_controller_1.default.deleteChargerRequest);
+exports.default = router;

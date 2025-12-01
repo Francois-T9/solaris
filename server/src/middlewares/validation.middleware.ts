@@ -1,5 +1,5 @@
-import { body } from "express-validator";
 import { PrismaClient } from "@prisma/client";
+import { body } from "express-validator";
 const prisma = new PrismaClient();
 
 const validateUser = [
@@ -55,7 +55,7 @@ const validateBill = [
         where: { userEmail: value },
       });
       if (existingUser) {
-        throw new Error("Ya ha mandado su cotización.");
+        throw new Error("EMAIL_EXISTS");
       }
       return true;
     }),
@@ -87,7 +87,7 @@ const validateCarRequest = [
         where: { userEmail: value },
       });
       if (existingUser) {
-        throw new Error("Ya ha mandado su cotización.");
+        throw new Error("EMAIL_EXISTS");
       }
       return true;
     }),

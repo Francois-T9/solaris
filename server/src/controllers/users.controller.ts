@@ -1,16 +1,15 @@
-import dotenv from "dotenv";
-dotenv.config();
-import { PrismaClient } from "@prisma/client";
-import { validationResult } from "express-validator";
 import {
-  S3Client,
-  PutObjectCommand,
-  GetObjectCommand,
   DeleteObjectCommand,
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { PrismaClient } from "@prisma/client";
+import dotenv from "dotenv";
+import { validationResult } from "express-validator";
+dotenv.config();
 
-import nodemailer from "nodemailer";
 import crypto from "crypto";
 import transporter from "../config/nodemailer";
 const aws_acess_key = process.env.AWS_ACCESS_KEY_ID;

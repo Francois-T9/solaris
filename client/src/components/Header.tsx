@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import logo from "../assets/logo_full.png";
+import { LanguagePicker } from "./language-picker";
 function Header() {
+  const { t } = useTranslation();
   return (
     <div className="navbar bg-base-100 shadow-sm z-50  w-full top-0 sticky sm:pl-16 sm:pr-16">
       <div className="navbar-start gap-4">
@@ -27,20 +30,19 @@ function Header() {
             className="menu menu-md sm:menu-lg dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/paquetes">Paquetes</Link>
+              <Link to="/paquetes">{t("header.packages")}</Link>
             </li>
             <li>
-              <Link to="/about">¿Quiénes somos?</Link>
+              <Link to="/about">{t("header.about")}</Link>
             </li>
             <li>
-              <Link to="/cotizacion">Cotizar</Link>
-            </li>
-
-            <li>
-              <Link to="/contacto">Contacto</Link>
+              <Link to="/cotizacion">{t("header.quote")}</Link>
             </li>
             <li>
-              <Link to="/faq">F.A.Q</Link>
+              <Link to="/contacto">{t("header.contact")}</Link>
+            </li>
+            <li>
+              <Link to="/faq">{t("header.faq")}</Link>
             </li>
           </ul>
         </div>
@@ -55,27 +57,29 @@ function Header() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/paquetes">Paquetes</Link>
+            <Link to="/paquetes">{t("header.packages")}</Link>
           </li>
           <li>
-            <Link to="/about">¿Quiénes somos?</Link>
+            <Link to="/about">{t("header.about")}</Link>
           </li>
           <li>
-            <Link to="/cotizacion">Cotizar</Link>
-          </li>
-
-          <li>
-            <Link to="/contacto">Contacto</Link>
+            <Link to="/cotizacion">{t("header.quote")}</Link>
           </li>
           <li>
-            <Link to="/faq">F.A.Q</Link>
+            <Link to="/contacto">{t("header.contact")}</Link>
+          </li>
+          <li>
+            <Link to="/faq">{t("header.faq")}</Link>
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <Link to="/cotizacion" className="btn btn-warning sm:btn-lg">
-          Cotiza ya!
-        </Link>
+      <div className="navbar-end flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-2">
+          <LanguagePicker />
+          <Link to="/cotizacion" className="btn btn-warning sm:btn-lg">
+            {t("header.quoteNow")}
+          </Link>
+        </div>
       </div>
     </div>
   );

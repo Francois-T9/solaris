@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 function ContactInformation() {
+  const { t } = useTranslation();
   const [copiedId, setCopiedId] = useState<string>("");
 
   useEffect(() => {
@@ -9,7 +11,7 @@ function ContactInformation() {
   }, [copiedId]);
   return (
     <div className="card bg-base-200 border-base-300 rounded-box  border p-4 h-1/2 w-">
-      <h2 className="card-title text-2xl mb-4">Información de contacto</h2>
+      <h2 className="card-title text-2xl mb-4">{t("contact.info.title")}</h2>
       {/* 
       <div className="flex items-start gap-4 mb-4">
         <FaMapMarkerAlt className="text-primary text-xl mt-1" />
@@ -83,7 +85,7 @@ function ContactInformation() {
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
         </svg>
         <div>
-          <h3 className="font-semibold">Teléfono</h3>
+          <h3 className="font-semibold">{t("contact.info.phone")}</h3>
           <p className="text-xs sm:text-xl">+52 7778311043 / 9381190203</p>
         </div>
       </div>

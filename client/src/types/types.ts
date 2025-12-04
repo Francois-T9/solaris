@@ -6,6 +6,15 @@ export type ContactData = {
   comment: string;
 };
 
+export type AuthStore = {
+  accessToken: string | null;
+  fetchMe: (password: string) => void;
+  loginError: string | null;
+  loginSuccess: string | null;
+  isAuth: boolean | null;
+  ensureAuth: () => boolean;
+};
+
 export type EnergyFormFields = {
   name: string;
   surname: string;
@@ -74,6 +83,7 @@ export type UsersStore = {
   deleteChargerRequest: (chargerRequestId: number) => void;
 
   getChargerRequests: () => void;
+  accessToken: string | null;
 
   contactRequestError: string;
   contactRequestSuccess: string;

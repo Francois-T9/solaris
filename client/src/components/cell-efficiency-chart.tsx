@@ -1,12 +1,3 @@
-import { TrendingUp } from "lucide-react";
-import {
-  CartesianGrid,
-  LabelList,
-  Line,
-  LineChart,
-  XAxis,
-  ResponsiveContainer,
-} from "recharts";
 import {
   Card,
   CardContent,
@@ -15,6 +6,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { TrendingUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import {
+  CartesianGrid,
+  LabelList,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  XAxis,
+} from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
 
 const cellEfficiencyData = [
@@ -31,22 +32,20 @@ const cellEfficiencyData = [
   { month: "2025", eficiencia: 27.0, mobile: 0 },
 ];
 
-const chartConfig = {
+export const getChartConfig = (t) => ({
   eficiencia: {
-    label: "Eficiencia",
+    label: t("cellChart.labelEfficiency"),
     color: "#02224a",
   },
-  yucatan: {
-    label: "Yucatán",
-    color: "#fdbf04",
-  },
-};
+});
 
 export default function CellEfficiencyChart() {
+  const { t } = useTranslation();
+  const chartConfig = getChartConfig(t);
   return (
     <Card className="w-80 lg:w-120 ">
       <CardHeader>
-        <CardTitle>Eficiencia de paneles solares</CardTitle>
+        <CardTitle>{t("cellChart.title")}</CardTitle>
         <CardDescription>1975 - 2025</CardDescription>
       </CardHeader>
 
@@ -116,7 +115,7 @@ export default function CellEfficiencyChart() {
 
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 leading-none font-medium">
-          Aumento de casi un 100% en 50 años <TrendingUp className="h-4 w-4" />
+          {t("cellChart.footer")} <TrendingUp className="h-4 w-4" />
         </div>
       </CardFooter>
     </Card>

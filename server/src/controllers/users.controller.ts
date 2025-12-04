@@ -6,12 +6,12 @@ import {
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { PrismaClient } from "@prisma/client";
+import crypto from "crypto";
 import dotenv from "dotenv";
 import { validationResult } from "express-validator";
-dotenv.config();
-
-import crypto from "crypto";
+import jwt from "jsonwebtoken";
 import transporter from "../config/nodemailer";
+dotenv.config();
 const aws_acess_key = process.env.AWS_ACCESS_KEY_ID;
 const aws_secret_key = process.env.AWS_SECRET_ACCESS_KEY;
 const bucket_name = process.env.BUCKET_NAME;
@@ -19,6 +19,18 @@ const bucket_region = process.env.BUCKET_REGION;
 const s3 = new S3Client({ region: bucket_region });
 
 const prisma = new PrismaClient();
+
+const login = async (req, res) => {
+  const { password } = req.body;
+  if (password !== process.env.ADMIN_PWD) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  const token = jwt.sign({ role: "admin" }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+  return res.status(200).json({ accessToken: token });
+};
 
 const getAllBills = async (req, res) => {
   try {
@@ -335,4 +347,5 @@ export default {
   createElectricCarRequest,
   getAllChargerRequests,
   deleteChargerRequest,
+  login,
 };

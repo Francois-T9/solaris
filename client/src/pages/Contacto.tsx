@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion } from "motion/react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -51,7 +52,12 @@ function Contacto() {
     await sendContact(data);
   };
   return (
-    <div className="flex flex-col  gap-4 items-center ">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="flex flex-col  gap-4 items-center "
+    >
       <h1 className="text-2xl font-bold underline">{t("contact.title")}</h1>
       <div className="flex flex-col lg:flex-row gap-4 items-center">
         <form
@@ -136,7 +142,7 @@ function Contacto() {
         </form>
         <ContactInformation />
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,8 +1,21 @@
-import { useUserStore } from "../store/user.store";
+import { useChargerRequest } from "@/hooks/useChargerRequest";
+
 function ChargerRequest() {
-  const { allChargerRequests, deleteChargerRequest } = useUserStore();
-  console.log(allChargerRequests);
-  if (allChargerRequests!.length > 0) {
+  const {
+    data: chargerRequests,
+    isLoading,
+    isError,
+    deleteChargerRequest,
+    isDeleting,
+  } = useChargerRequest();
+  if (isLoading) {
+    return <span className="loading loading-spinner loading-xs"></span>;
+  }
+  if (isError) {
+    return <div>Error al cargar las solicitudes de cargadores</div>;
+  }
+  const allChargerRequests = chargerRequests;
+  if (allChargerRequests && allChargerRequests.length > 0) {
     return (
       <div className=" mx-auto w-full flex items-center flex-col gap-4">
         <div className="rounded-box border border-base-content/5 bg-base-100">
@@ -86,27 +99,31 @@ function ChargerRequest() {
                     </td>
                     <td className="w-10">{request.manufacturerName}</td>
                     <td>
-                      <button
-                        className="btn btn-square"
-                        onClick={() => deleteChargerRequest(request.id)}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="#000000"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                      {isDeleting ? (
+                        <span className="loading loading-spinner loading-xs"></span>
+                      ) : (
+                        <button
+                          className="btn btn-square"
+                          onClick={() => deleteChargerRequest(request.id)}
                         >
-                          <polyline points="3 6 5 6 21 6"></polyline>
-                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                          <line x1="10" y1="11" x2="10" y2="17"></line>
-                          <line x1="14" y1="11" x2="14" y2="17"></line>
-                        </svg>
-                      </button>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#000000"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                          </svg>
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}

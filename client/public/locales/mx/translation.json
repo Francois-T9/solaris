@@ -248,5 +248,51 @@
         }
       }
     }
+  },
+  "sunChart": {
+    "title": "Soleamiento en Yucatán",
+    "subtitle": "Comparación con Alemania",
+    "labelGermany": "Alemania",
+    "labelMexico": "Yucatán",
+    "month": {
+      "jan": "Ene",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Abr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Ago",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dic"
+    },
+    "footer": "Yucatán recibe más del doble de radiación solar que Alemania"
+  },
+  "cellChart": {
+    "title": "Eficiencia de paneles solares",
+    "subtitle": "1975 - 2025",
+    "labelEfficiency": "Eficiencia (%) : ",
+    "footer": "Aumento de casi el doble en eficiencia de celdas solares en los últimos 50 años"
+  },
+  "ahorros": {
+    "title": "Calculadora de Ahorros",
+    "consumptionLabel": "Consumo mensual :  {{consumo}} kWh",
+    "installationCost": "Costo de instalación estimado:",
+    "annualSavings": "Ahorro anual estimado:",
+    "paybackPeriod": "Periodo de retorno de inversión:",
+    "years": "años",
+    "columns": {
+      "concept": "Concepto",
+      "amount": "Valor"
+    },
+    "rows": {
+      "providerCost": "Costo anual CFE",
+      "installationCost": "Costo de instalación estimado",
+      "annualSavings": "Ahorro anual estimado",
+      "paybackPeriod": "Periodo de retorno de inversión",
+      "paybackValue": "{{retorno}} años"
+    }
   }
 }

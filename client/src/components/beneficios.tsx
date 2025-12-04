@@ -1,8 +1,8 @@
 import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
-import battery from "../assets/battery-charging.svg";
-import board from "../assets/clipboard-edit-outline.svg";
+import battery from "../assets/Icône batterie pleine.svg";
 import lightBulb from "../assets/Icône Light Mode.svg";
+import board from "../assets/Material Symbols Icon.svg";
 import piggyBank from "../assets/savings_24dp_02224A_FILL0_wght400_GRAD0_opsz24.svg";
 
 function Beneficios() {

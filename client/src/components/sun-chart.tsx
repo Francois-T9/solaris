@@ -1,10 +1,10 @@
 import { TrendingUp } from "lucide-react";
 import {
-  BarChart,
   Bar,
+  BarChart,
   CartesianGrid,
-  XAxis,
   ResponsiveContainer,
+  XAxis,
 } from "recharts";
 
 import {
@@ -16,48 +16,55 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  ChartTooltip,
-  ChartTooltipContent,
+  ChartContainer,
   ChartLegend,
   ChartLegendContent,
-  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
 } from "@/components/ui/chart";
-
+import { useTranslation } from "react-i18next";
 export const description = "A stacked bar chart with a legend";
 
-const comparisonSolarData = [
-  { month: "Enero", yucatan: 207, germany: 61 },
-  { month: "Febrero", yucatan: 244, germany: 89 /* approx */ },
-  { month: "Marzo", yucatan: 300, germany: 140 /* mid spring */ },
-  { month: "Abril", yucatan: 302, germany: 170 /* approximate */ },
-  { month: "Mayo", yucatan: 322, germany: 200 /* approx high */ },
-  { month: "Junio", yucatan: 294, germany: 210 /* June peak in sunshine */ },
-  { month: "Julio", yucatan: 324, germany: 200 /* hot summer */ },
-  { month: "Agosto", yucatan: 317, germany: 210 /* approximate */ },
-  { month: "Septiembre", yucatan: 290, germany: 170 /* drop */ },
-  { month: "Octubre", yucatan: 302, germany: 130 /* autumn */ },
-  { month: "Noviembre", yucatan: 276, germany: 80 /* late autumn */ },
-  { month: "Diciembre", yucatan: 276, germany: 70 /* winter */ },
+export const getComparisonSolarData = (t) => [
+  { month: t("sunChart.month.jan"), yucatan: 207, germany: 61 },
+  { month: t("sunChart.month.feb"), yucatan: 244, germany: 89 },
+  { month: t("sunChart.month.mar"), yucatan: 300, germany: 140 },
+  { month: t("sunChart.month.apr"), yucatan: 302, germany: 170 },
+  { month: t("sunChart.month.may"), yucatan: 322, germany: 200 },
+  { month: t("sunChart.month.jun"), yucatan: 294, germany: 210 },
+  { month: t("sunChart.month.jul"), yucatan: 324, germany: 200 },
+  { month: t("sunChart.month.aug"), yucatan: 317, germany: 210 },
+  { month: t("sunChart.month.sep"), yucatan: 290, germany: 170 },
+  { month: t("sunChart.month.oct"), yucatan: 302, germany: 130 },
+  { month: t("sunChart.month.nov"), yucatan: 276, germany: 80 },
+  { month: t("sunChart.month.dec"), yucatan: 276, germany: 70 },
 ];
 
 // No CSS variables — using real color values
-const chartConfig = {
-  germany: {
-    label: "Alemaña",
-    color: "#02224a",
-  },
-  yucatan: {
-    label: "Yucatán",
-    color: "#fdbf04",
-  },
-};
+// const chartConfig = {
+//   germany: {
+//     label: {t("sunChart.germany")},
+//     color: "#02224a",
+//   },
+//   yucatan: {
+//     label: "Yucatán",
+//     color: "#fdbf04",
+//   },
+// };
+export const getChartConfig = (t) => ({
+  germany: { label: t("sunChart.labelGermany"), color: "#02224a" },
+  yucatan: { label: t("sunChart.labelMexico"), color: "#fdbf04" },
+});
 
 export default function SunChart() {
+  const { t } = useTranslation();
+  const chartConfig = getChartConfig(t);
+  const comparisonSolarData = getComparisonSolarData(t);
   return (
     <Card className="w-80 lg:w-120  ">
       <CardHeader>
-        <CardTitle>Soleamiento en Yucatán</CardTitle>
-        <CardDescription>Comparación con Alemaña</CardDescription>
+        <CardTitle>{t("sunChart.title")}</CardTitle>
+        <CardDescription>{t("sunChart.subtitle")}</CardDescription>
       </CardHeader>
 
       <CardContent>
@@ -106,10 +113,7 @@ export default function SunChart() {
 
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 leading-none font-medium">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="text-muted-foreground leading-none">
-          Showing total visitors for the last 6 months
+          {t("sunChart.footer")} <TrendingUp className="h-4 w-4" />
         </div>
       </CardFooter>
     </Card>

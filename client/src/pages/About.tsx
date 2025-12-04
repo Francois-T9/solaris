@@ -1,9 +1,15 @@
+import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 
 function About() {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col   items-center gap-4 ">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="flex flex-col   items-center gap-4 "
+    >
       <h1 className="text-2xl font-bold underline">{t("about.title")}</h1>
 
       <div className="flex flex-col sm:flex-row gap-4">
@@ -39,7 +45,7 @@ function About() {
           <p className="text-xl">{t("about.mission")}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -192,7 +192,7 @@
     "hero": {
       "title": "Solaris",
       "subtitle": "Energy solutions",
-      "tagline": "We do them for you.",
+      "tagline": "We do it for you.",
       "description": "Save energy, protect the planet and reduce your costs.",
       "button": "View packages"
     },
@@ -247,6 +247,53 @@
           "feature3": "Keep refrigerators, internet and security running"
         }
       }
+    }
+  },
+  "sunChart": {
+    "title": "Solar Energy Potential ",
+    "subtitle": "Comparison with Germany",
+    "labelGermany": "Germany",
+    "labelMexico": "Yucatán",
+    "month": {
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    },
+    "footer": "Yucatán has nearly double the solar potential of Germany"
+  },
+  "cellChart": {
+    "title": "Solar Cell Efficiency Over Time",
+    "subtitle": "Improvements in solar cell technology from 1975 to 2025",
+    "labelEfficiency": "Efficiency (%) : ",
+    "labelYear": "Year",
+    "tooltip": {
+      "year": "Year",
+      "efficiency": "Efficiency"
+    },
+    "footer": "Nearly 100% increase in 50 years"
+  },
+  "ahorros": {
+    "title": "Savings Calculator",
+    "consumptionLabel": "Monthly Consumption: {{consumo}} kWh",
+    "columns": {
+      "concept": "Concept",
+      "amount": "Amount"
+    },
+    "rows": {
+      "providerCost": "Annual Utility Cost",
+      "installationCost": "Estimated Installation Cost",
+      "annualSavings": "Annual Savings",
+      "paybackPeriod": "Approximate Payback Period",
+      "paybackValue": "{{retorno}} years"
     }
   }
 }

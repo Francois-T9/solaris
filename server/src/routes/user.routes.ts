@@ -1,15 +1,14 @@
 import express from "express";
-import usersController from "../controllers/users.controller";
-import validators from "../middlewares/validation.middleware";
 import multer from "multer";
-import multerS3 from "multer-s3";
-
+import usersController from "../controllers/users.controller";
+import { authenticate } from "../middlewares/auth.middleware";
+import validators from "../middlewares/validation.middleware";
 const upload = multer({ storage: multer.memoryStorage() });
 const router = express.Router();
 
-router.get("/bills", usersController.getAllBills);
+router.get("/bills", authenticate, usersController.getAllBills);
 router.get("/info", usersController.getAllUserRequests);
-router.get("/car", usersController.getAllChargerRequests);
+router.get("/car", authenticate, usersController.getAllChargerRequests);
 router.post(
   "/bill",
   upload.single("file"),
@@ -22,6 +21,8 @@ router.post(
   usersController.createUserRequest
 );
 
+router.post("/login", usersController.login);
+
 router.post(
   "/car",
   upload.none(),
@@ -31,7 +32,11 @@ router.post(
 
 router.get("/brands", usersController.getAllBrands);
 
-router.delete("/bills/:id", usersController.deleteBill);
-router.delete("/chargers/:id", usersController.deleteChargerRequest);
+router.delete("/bills/:id", authenticate, usersController.deleteBill);
+router.delete(
+  "/chargers/:id",
+  authenticate,
+  usersController.deleteChargerRequest
+);
 
 export default router;

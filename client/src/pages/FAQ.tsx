@@ -1,10 +1,16 @@
+import { motion } from "motion/react";
 import { useTranslation } from "react-i18next";
 
 function FAQ() {
   const { t } = useTranslation();
 
   return (
-    <div className="max-w-2xl mx-auto w-full items-center flex flex-col gap-4">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="max-w-2xl mx-auto w-full items-center flex flex-col gap-4"
+    >
       <h1 className="text-2xl font-bold underline">{t("faq.title")}</h1>
       <div className="collapse collapse-arrow bg-base-100 border border-base-300">
         <input type="radio" name="my-accordion-2" defaultChecked />
@@ -51,7 +57,7 @@ function FAQ() {
           {t("faq.questions.q5.answer")}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

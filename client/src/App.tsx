@@ -47,17 +47,12 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  const { getBills, getCarBrands, getChargerRequests } = useUserStore();
+  const { getCarBrands } = useUserStore();
   const [isAppReady, setIsAppReady] = useState<boolean>(false);
   const { fetchFlags } = useFlagsStore();
   useEffect(() => {
     const init = async () => {
-      await Promise.all([
-        getBills(),
-        getCarBrands(),
-        getChargerRequests(),
-        fetchFlags(),
-      ]);
+      await Promise.all([getCarBrands(), fetchFlags()]);
 
       setIsAppReady(true);
     };

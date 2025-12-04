@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import type i18next from "i18next";
 import { TrendingUp } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
@@ -32,7 +33,7 @@ const cellEfficiencyData = [
   { month: "2025", eficiencia: 27.0, mobile: 0 },
 ];
 
-export const getChartConfig = (t) => ({
+const getChartConfig = (t: typeof i18next.t) => ({
   eficiencia: {
     label: t("cellChart.labelEfficiency"),
     color: "#02224a",

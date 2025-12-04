@@ -22,10 +22,11 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 export const description = "A stacked bar chart with a legend";
 
-export const getComparisonSolarData = (t) => [
+const getComparisonSolarData = (t: TFunction<"translation", undefined>) => [
   { month: t("sunChart.month.jan"), yucatan: 207, germany: 61 },
   { month: t("sunChart.month.feb"), yucatan: 244, germany: 89 },
   { month: t("sunChart.month.mar"), yucatan: 300, germany: 140 },
@@ -51,7 +52,7 @@ export const getComparisonSolarData = (t) => [
 //     color: "#fdbf04",
 //   },
 // };
-export const getChartConfig = (t) => ({
+const getChartConfig = (t: TFunction<"translation", undefined>) => ({
   germany: { label: t("sunChart.labelGermany"), color: "#02224a" },
   yucatan: { label: t("sunChart.labelMexico"), color: "#fdbf04" },
 });

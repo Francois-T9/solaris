@@ -17,3 +17,5 @@ app.use("/api", router);
 app.listen(3000, () => {
   console.log("app running on port 3000");
 });
+
+export default app;

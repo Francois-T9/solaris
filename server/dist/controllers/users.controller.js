@@ -6,17 +6,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const client_s3_1 = require("@aws-sdk/client-s3");
 const s3_request_presigner_1 = require("@aws-sdk/s3-request-presigner");
 const client_1 = require("@prisma/client");
+const crypto_1 = __importDefault(require("crypto"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const express_validator_1 = require("express-validator");
-dotenv_1.default.config();
-const crypto_1 = __importDefault(require("crypto"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const nodemailer_1 = __importDefault(require("../config/nodemailer"));
+dotenv_1.default.config();
 const aws_acess_key = process.env.AWS_ACCESS_KEY_ID;
 const aws_secret_key = process.env.AWS_SECRET_ACCESS_KEY;
 const bucket_name = process.env.BUCKET_NAME;
 const bucket_region = process.env.BUCKET_REGION;
 const s3 = new client_s3_1.S3Client({ region: bucket_region });
 const prisma = new client_1.PrismaClient();
+const login = async (req, res) => {
+    const { password } = req.body;
+    if (password !== process.env.ADMIN_PWD) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+    const token = jsonwebtoken_1.default.sign({ role: "admin" }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+    });
+    return res.status(200).json({ accessToken: token });
+};
 const getAllBills = async (req, res) => {
     try {
         const allBills = await prisma.energyRequest.findMany({
@@ -303,4 +314,5 @@ exports.default = {
     createElectricCarRequest,
     getAllChargerRequests,
     deleteChargerRequest,
+    login,
 };

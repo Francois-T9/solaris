@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_validator_1 = require("express-validator");
 const client_1 = require("@prisma/client");
+const express_validator_1 = require("express-validator");
 const prisma = new client_1.PrismaClient();
 const validateUser = [
     (0, express_validator_1.body)("data.name")
@@ -50,7 +50,7 @@ const validateBill = [
             where: { userEmail: value },
         });
         if (existingUser) {
-            throw new Error("Ya ha mandado su cotización.");
+            throw new Error("EMAIL_EXISTS");
         }
         return true;
     }),
@@ -78,7 +78,7 @@ const validateCarRequest = [
             where: { userEmail: value },
         });
         if (existingUser) {
-            throw new Error("Ya ha mandado su cotización.");
+            throw new Error("EMAIL_EXISTS");
         }
         return true;
     }),

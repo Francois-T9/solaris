@@ -18,3 +18,4 @@ app.use("/api", user_routes_1.default);
 app.listen(3000, () => {
     console.log("app running on port 3000");
 });
+exports.default = app;

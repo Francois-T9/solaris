@@ -13,7 +13,7 @@ export const useAuthStore = create<AuthStore>()(
       isAuth: null,
 
       fetchMe: async (password: string) => {
-        const response = await fetch(`${API_URL}/api/login`, {
+        const response = await fetch(`${API_URL}api/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ password }),

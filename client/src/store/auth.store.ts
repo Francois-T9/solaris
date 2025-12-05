@@ -2,6 +2,8 @@ import type { AuthStore } from "@/types/types";
 import { jwtDecode } from "jwt-decode";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+const API_URL = import.meta.env.VITE_API_URL;
+
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set, get) => ({
@@ -11,7 +13,7 @@ export const useAuthStore = create<AuthStore>()(
       isAuth: null,
 
       fetchMe: async (password: string) => {
-        const response = await fetch(`http://localhost:3000/api/login`, {
+        const response = await fetch(`${API_URL}/api/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ password }),

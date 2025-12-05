@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import type { UsersStore } from "../types/types";
 import { useAuthStore } from "./auth.store";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const useUserStore = create<UsersStore>()((set, get) => {
   useAuthStore.subscribe((state) => {
@@ -23,7 +24,7 @@ export const useUserStore = create<UsersStore>()((set, get) => {
     allBrands: [],
 
     sendContact: async (data) => {
-      const response = await fetch(`http://localhost:3000/api/request`, {
+      const response = await fetch(`${API_URL}/api/request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data }),
@@ -41,7 +42,7 @@ export const useUserStore = create<UsersStore>()((set, get) => {
     },
 
     sendCar: async (data) => {
-      const response = await fetch(`http://localhost:3000/api/car`, {
+      const response = await fetch(`${API_URL}/api/car`, {
         method: "POST",
         body: data,
       });
@@ -61,7 +62,7 @@ export const useUserStore = create<UsersStore>()((set, get) => {
     },
 
     sendBill: async (data) => {
-      const response = await fetch(`http://localhost:3000/api/bill`, {
+      const response = await fetch(`${API_URL}/api/bill`, {
         method: "POST",
         body: data,
       });
@@ -80,7 +81,7 @@ export const useUserStore = create<UsersStore>()((set, get) => {
 
     getBills: async () => {
       const { accessToken } = get();
-      const response = await fetch(`http://localhost:3000/api/bills`, {
+      const response = await fetch(`${API_URL}/api/bills`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -99,7 +100,7 @@ export const useUserStore = create<UsersStore>()((set, get) => {
     },
 
     getChargerRequests: async () => {
-      const response = await fetch(`http://localhost:3000/api/car`, {
+      const response = await fetch(`${API_URL}/api/car`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -118,16 +119,13 @@ export const useUserStore = create<UsersStore>()((set, get) => {
     },
 
     deleteBill: async (billId: number) => {
-      const response = await fetch(
-        `http://localhost:3000/api/bills/${billId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${get().accessToken}`,
-          },
-        }
-      );
+      const response = await fetch(`${API_URL}/api/bills/${billId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${get().accessToken}`,
+        },
+      });
 
       if (response.status === 200) {
         get().getBills();
@@ -136,7 +134,7 @@ export const useUserStore = create<UsersStore>()((set, get) => {
 
     deleteChargerRequest: async (chargerRequestId: number) => {
       const response = await fetch(
-        `http://localhost:3000/api/chargers/${chargerRequestId}`,
+        `${API_URL}/api/chargers/${chargerRequestId}`,
         {
           method: "DELETE",
           headers: {
@@ -152,7 +150,7 @@ export const useUserStore = create<UsersStore>()((set, get) => {
     },
 
     getCarBrands: async () => {
-      const response = await fetch(`http://localhost:3000/api/brands`);
+      const response = await fetch(`${API_URL}/api/brands`);
 
       const data = await response.json();
       if (response.status === 200) {

@@ -24,7 +24,7 @@ function CalculadorAhorros() {
   const retorno = (instalacion / ahorroAnual).toFixed(1);
 
   return (
-    <div className="p-4 w-120 mx-auto bg-base-100 rounded-box border border-base-content/5">
+    <div className="p-4 w-80 lg:120 mx-auto bg-base-100 rounded-box border border-base-content/5">
       <h2 className="text-xl font-bold mb-4">{t("ahorros.title")}</h2>
 
       <label className="label">

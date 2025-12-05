@@ -4,7 +4,18 @@ import express from "express";
 import router from "./routes/user.routes";
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://solaris-client-l5s4ka2t6-francois-projects-86840cf4.vercel.app",
+      "http://localhost:3000", // for local development
+      // Add your production domain when you have it
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(bodyParser.json());
 app.use(
   express.urlencoded({

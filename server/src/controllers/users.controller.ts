@@ -5,12 +5,12 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import { PrismaClient } from "@prisma/client";
 import crypto from "crypto";
 import dotenv from "dotenv";
 import { validationResult } from "express-validator";
 import jwt from "jsonwebtoken";
 import transporter from "../config/nodemailer";
+import { PrismaClient } from "../lib/prisma";
 dotenv.config();
 const aws_acess_key = process.env.AWS_ACCESS_KEY_ID;
 const aws_secret_key = process.env.AWS_SECRET_ACCESS_KEY;

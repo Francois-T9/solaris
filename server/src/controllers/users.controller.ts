@@ -18,7 +18,7 @@ const bucket_name = process.env.BUCKET_NAME;
 const bucket_region = process.env.BUCKET_REGION;
 const s3 = new S3Client({ region: bucket_region });
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 const login = async (req, res) => {
   const { password } = req.body;

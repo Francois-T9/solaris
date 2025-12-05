@@ -1,7 +1,6 @@
 import { body } from "express-validator";
 import { PrismaClient } from "../../src/lib/prisma";
-const prisma = new PrismaClient();
-
+export const prisma = new PrismaClient();
 const validateUser = [
   body("data.name")
     .notEmpty()

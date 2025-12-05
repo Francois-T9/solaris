@@ -150,11 +150,17 @@ export const useUserStore = create<UsersStore>()((set, get) => {
     },
 
     getCarBrands: async () => {
-      const response = await fetch(`${API_URL}/api/brands`);
+      try {
+        const response = await fetch(`${API_URL}/api/brands`);
 
-      const data = await response.json();
-      if (response.status === 200) {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
         set({ allBrands: data });
+      } catch (error) {
+        console.error("Error fetching brands:", error);
       }
     },
 

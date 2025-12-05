@@ -6,11 +6,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "https://solaris-client-l5s4ka2t6-francois-projects-86840cf4.vercel.app",
-      "http://localhost:3000", // for local development
-      // Add your production domain when you have it
-    ],
+    origin: "*",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],

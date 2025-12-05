@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int             @id @default(autoincrement())
+  name           String
+  surname        String
+  email          String          @unique
+  energyRequest  EnergyRequest?
+  chargerRequest ChargerRequest?
+  infoRequest    InfoRequest?
+}
+
+model EnergyRequest {
+  id        Int      @id @default(autoincrement())
+  billName  String
+  billUrl   String
+  createdAt DateTime @default(now())
+  paquete   String
+
+  user      User   @relation(fields: [userEmail], references: [email])
+  userEmail String @unique
+}
+
+model InfoRequest {
+  id Int @id @default(autoincrement())
+
+  requestType String
+  comment     String
+  user        User   @relation(fields: [userEmail], references: [email])
+  userEmail   String @unique
+}
+
+model ChargerRequest {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime @default(now())
+
+  user      User   @relation(fields: [userEmail], references: [email])
+  userEmail String @unique
+
+  manufacturerName String?
+  manufacturer     Manufacturer? @relation(fields: [manufacturerName], references: [name])
+}
+
+model Manufacturer {
+  name     String           @id
+  requests ChargerRequest[] // 👈 one-to-many
+}

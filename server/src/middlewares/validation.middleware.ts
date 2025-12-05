@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { body } from "express-validator";
+import { PrismaClient } from "../../prisma/generated/client";
 const prisma = new PrismaClient();
 
 const validateUser = [

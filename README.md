@@ -4,7 +4,6 @@
 
 🚀 A modern full-stack application built with **Express, Prisma, React, Zustand & TailwindCSS**.
 
-🎨 Fast, stylish & scalable — from backend to UI.
 
 <hr/>
 
@@ -40,4 +39,4 @@
 
 ```bash
 git clone git@github.com:Francois-T9/solaris.git
-cd your-repo-name
+cd solaris

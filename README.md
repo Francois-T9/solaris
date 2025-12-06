@@ -39,5 +39,5 @@
 ### 📥 Clone Repo
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
+git clone git@github.com:Francois-T9/solaris.git
 cd your-repo-name
